@@ -1,0 +1,6 @@
+System Type -
+Food Delivery Management System
+Responsible Classes - 
+•	Customer -Day
+•	Restaurant -Day
+•	Delivery Person -Day
