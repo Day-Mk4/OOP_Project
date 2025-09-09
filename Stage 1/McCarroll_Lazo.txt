@@ -1,0 +1,6 @@
+System Type -
+Food Delivery Management System
+Responsible Classes - 
+•	Order -Lazo
+•	Payment -Lazo
+•	Menu -Lazo
