@@ -1,6 +1,11 @@
 System Type -
 Food Delivery Management System
 Responsible Classes - 
-•	Order -Lazo
-•	Payment -Lazo
-•	Menu -Lazo
+
+•	Order - Lazo
+•	Payment - Lazo
+•	Menu - Lazo
+
+Additional Classes -
+  Username/Password - Lazo
+  Delivery Vehicle - Lazo  
