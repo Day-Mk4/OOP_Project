@@ -4,5 +4,6 @@ Responsible Classes -
 •	Customer -Day
 •	Restaurant -Day
 •	Delivery Person -Day
+Additional Classes -
 •	Address -Day
 •	Discounts/Coupons -Day
