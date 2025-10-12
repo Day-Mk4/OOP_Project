@@ -1,5 +1,5 @@
 Day Pena – Stage 2 
 
-Classes: User, Admin, DeliveryPerson, Customer, DiscountCoupon, Restaurant
+Classes: User, Login, DeliveryPerson, Customer, DiscountCoupon, Restaurant
 
-I was responsible for implementing my classes in the UML diagram that handle User, admin, customer, delivery person, discount, and restaurant functions. We both helped with each others classes to help understand each class we were responsible for.
+I was responsible for implementing my classes in the UML diagram that handle User, admin, customer, delivery person, discount, and restaurant functions. We both helped with each others classes to help understand each class we were responsible for. Main class was the one we both adjusted
