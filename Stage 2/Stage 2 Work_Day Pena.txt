@@ -3,13 +3,3 @@ Day Pena – Stage 2
 Classes: User, Admin, DeliveryPerson, Customer, DiscountCoupon, Restaurant
 
 I was responsible for implementing my classes in the UML diagram that handle User, admin, customer, delivery person, discount, and restaurant functions. We both helped with each others classes to help understand each class we were responsible for.
-
-Admin - I created the User superclass to define shared attributes like name, email, phone, and address, along with getter and setter methods. The Admin subclass manages CRUD operations for customers, restaurants, and delivery personnel through lists and methods.
-
-DeliveryPerson - This class represents delivery drivers and includes attributes like assigned orders, past orders and with relationship to order.
-
-Customer - I built the Customer class to store customer information and order history. It includes methods to manage and review current/past orders, maintaining a relationship with Order.
-
-DiscountCoupon - The DiscountCoupon class handles coupon logic with attributes for code, discountAmount, and valid. It provides methods to apply discounts and verify coupon validity.
-
-Restaurant - This class defines restaurant details and connects to a Menu class which will have their items.
