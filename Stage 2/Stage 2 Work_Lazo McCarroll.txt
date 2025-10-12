@@ -1,0 +1,11 @@
+Parts of UML diagram created & responsible for initially:
+  - Order
+  - Payment
+  - Menu
+
+Parts of UML diagram created & responsible for after Stage 1:
+  - Admin
+  - Delivery Vehicle
+  - Employee
+
+Day and I were equally responsible for Main class but we provided suggestions and advice for each other's classes.
