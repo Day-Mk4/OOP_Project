@@ -8,4 +8,4 @@ Parts of UML diagram created & responsible for after Stage 1:
   - Delivery Vehicle
   - Employee
 
-Amadeo and I were equally responsible for Main class but we provided suggestions and advice for each other's classes.
+Day and I were equally responsible for Main class but we provided suggestions and advice for each other's classes.
