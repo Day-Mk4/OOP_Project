@@ -13,12 +13,13 @@ public class Restaurant {
     private String phone;
     private ArrayList<Order> orders = new ArrayList<>();
 
-    public Restaurant(String ID, String name, String address, String phone, double rating) {
+    public Restaurant(String ID, String name, String address, String phone, double rating, Menu menu) {
         this.restaurantID = ID;
         this.restaurantName = name;
         this.address = address; 
         this.phone = phone;
         this.rating = rating;
+        this.menu = menu;
     }
 
     public String getName() 

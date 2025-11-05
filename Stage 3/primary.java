@@ -1,12 +1,14 @@
 import java.io.File;
 import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 public class Primary
 {
     private Set<Employee> listEmployees;
     private Set<Customer> listCustomers;
-    private Set<Menu> listMenus;
+    private List<Menu> listMenus;
     private Set<Restaurant> listRestaurants;
     private Set<DeliveryVehicle> listVehicles;
     private Set<DiscountCoupon> listCoupons;
@@ -34,9 +36,9 @@ public class Primary
         return newList;
     }
 
-    public Set<Menu> createGenericMenus()
+    public List<Menu> createGenericMenus()
     {
-        Set<Menu> newList = new HashSet<>();
+        List<Menu> newList = new ArrayList<>();
         return newList;
     }
 
@@ -44,6 +46,7 @@ public class Primary
     {
         Set<Restaurant> newList = new HashSet<>();
         Scanner scanner = new Scanner(new File ("list_restaurants.txt"));
+        int menuCounter = 0;
         while(scanner.hasNextLine())
         {
             String name = scanner.next().replace("_", " ");
@@ -51,7 +54,8 @@ public class Primary
             String address = scanner.next().replace("_", " ");
             Double rating = scanner.nextDouble();
             String phone = scanner.next();
-            newList.add(new Restaurant(ID, name, address, phone, rating));
+            Menu menu = listMenus.get(menuCounter);
+            newList.add(new Restaurant(ID, name, address, phone, rating, menu));
         }
         return newList;
     }
