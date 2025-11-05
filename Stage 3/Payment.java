@@ -2,27 +2,27 @@
  * Author: Lazo McCarroll
  * Assignment: Project
  */
+import java.util.Set;
 public class Payment
 {
     private String paymentID;
     private Double price;
     private Boolean paidStatus;
-    private Set<DiscountCoupon> appliedCoupons;
 
     /**
      * This method initializes the instance variables.
      * 
-     * NOTE TO AMADEO 10/27:  Not all of the UML diagram's variables are here. I'm reconsidering what variables
+     * NOTE TO AMADEO 11/1:  Not all of the UML diagram's variables are here. I'm reconsidering what variables
      * that this class should have - see Prof. notes on Stage 2
-     * @param Price
-     * @param appliedCoupons
+     * @param newPaymentID
+     * @param newPrice
+     * @param newPaidStatus
      */
-    public payment(String newPaymentID, double newPrice, Boolean newPaidStatus, Set<DiscountCoupon> newAppliedCoupons)
+    public Payment(String newPaymentID, double newPrice, Boolean newPaidStatus)
     {
         paymentID = newPaymentID;
         price = newPrice;
         paidStatus = newPaidStatus;
-        appliedCoupons = newAppliedCoupons;
     }
 
     // GETTERS
@@ -81,5 +81,15 @@ public class Payment
     public void setPaidStatus(Boolean newPaidStatus)
     {
         paidStatus = newPaidStatus;
+    }
+
+    // MISC
+
+    /**
+     * This method displays all of the details of the payment
+     */
+    public void displayPaymentDetails()
+    {
+        System.out.println("Payment ID: "+paymentID+"\nTotal price: "+price+"\nStatus of Payment: "+paidStatus);
     }
 }

@@ -32,7 +32,7 @@ public class Customer {
 
     public void payBill(Order order) {
         if (order != null && order.getPayment() != null) {
-            order.getPayment().updatePaidStatus(true);
+            order.getPayment().setPaidStatus(true);
         }
     }
 
