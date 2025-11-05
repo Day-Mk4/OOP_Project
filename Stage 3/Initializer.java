@@ -4,7 +4,7 @@
  */
 public class Initializer {
     public static void main(String[] args) {
-        Main app = new Main();
+        Primary app = new Primary();
         app.loginMenu();
     }
 }

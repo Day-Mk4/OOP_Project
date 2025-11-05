@@ -4,19 +4,75 @@ import java.util.Scanner;
 import java.util.Set;
 public class Primary
 {
+    private Set<Employee> listEmployees;
+    private Set<Customer> listCustomers;
+    private Set<Menu> listMenus;
     private Set<Restaurant> listRestaurants;
+    private Set<DeliveryVehicle> listVehicles;
+    private Set<DiscountCoupon> listCoupons;
     private Scanner scanner;
 
-    public primary()
+    public Primary()
     {
+        listEmployees = createGenericEmployees();
+        listCustomers = createGenericCustomers();
+        listMenus = createGenericMenus();
         listRestaurants = createGenericRestaurants();
+        listVehicles = createGenericVehicles();
+        listCoupons = createGenericCoupons();
+    }
+
+    public Set<Employee> createGenericEmployees()
+    {
+        Set<Employee> newList = new HashSet<>();
+        return newList;
+    }
+
+    public Set<Customer> createGenericCustomers()
+    {
+        Set<Customer> newList = new HashSet<>();
+        return newList;
+    }
+
+    public Set<Menu> createGenericMenus()
+    {
+        Set<Menu> newList = new HashSet<>();
+        return newList;
     }
 
     public Set<Restaurant> createGenericRestaurants()
     {
         Set<Restaurant> newList = new HashSet<>();
-        File restaurantsFile = new File("restaurants_list.txt");
-        scanner = new Scanner(restaurantsFile);
+        Scanner scanner = new Scanner(new File ("list_restaurants.txt"));
+        while(scanner.hasNextLine())
+        {
+            String name = scanner.next().replace("_", " ");
+            String ID = scanner.next();
+            String address = scanner.next().replace("_", " ");
+            Double rating = scanner.nextDouble();
+            String phone = scanner.next();
+            newList.add(new Restaurant(ID, name, address, phone, rating));
+        }
+        return newList;
+    }
+
+    public Set<DeliveryVehicle> createGenericVehicles()
+    {
+        Set<DeliveryVehicle> newList = new HashSet<>();
+        return newList;
+    }
+
+    public Set<DiscountCoupon> createGenericCoupons()
+    {
+        Set<DiscountCoupon> newList = new HashSet<>();
+        Scanner scanner = new Scanner(new File ("list_coupons.txt"));
+        while (scanner.hasNextLine())
+        {
+            String code = scanner.next();
+            double amount = scanner.nextDouble();
+            Boolean validity = Boolean.valueOf(scanner.next());
+            newList.add(new DiscountCoupon(code, amount, validity));
+        }
         return newList;
     }
 }
