@@ -1,12 +1,11 @@
-import java.io.*;
+import java.io.File;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Scanner;
-public class primary
+import java.util.Set;
+public class Primary
 {
-
-    private Scanner fileScanner;
     private Set<Restaurant> listRestaurants;
+    private Scanner scanner;
 
     public primary()
     {
@@ -16,9 +15,8 @@ public class primary
     public Set<Restaurant> createGenericRestaurants()
     {
         Set<Restaurant> newList = new HashSet<>();
-        String filePath = "C:\\Users\\Lithi\\OneDrive\\Documents\\GitHub\\OOP_Project\\Stage 3\\dummyDataFiles\\restaurants_list.txt";
-        fileScanner = new Scanner(new File(filePath));
-
+        File restaurantsFile = new File("restaurants_list.txt");
+        scanner = new Scanner(restaurantsFile);
         return newList;
     }
 }
