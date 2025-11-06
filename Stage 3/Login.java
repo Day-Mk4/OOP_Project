@@ -2,25 +2,54 @@
  * Author: Amadeo Pena
  * Assignment: Project
  */
-public class Login {
-    private String username;
-    private String password;
+import java.util.Set;
 
-    public Login(String username, String password) {
+public class Login {
+
+    private final String username;
+    private final String password;
+    private final Set<Employee> listEmployees;
+    private final Set<Customer> listCustomers;
+    private final Set<DeliveryPerson> listDrivers;
+    private final Admin admin;
+
+    
+    public Login(String username, String password,
+                 Set<Employee> listEmployees,
+                 Set<Customer> listCustomers,
+                 Set<DeliveryPerson> listDrivers,
+                 Admin admin) {
         this.username = username;
         this.password = password;
+        this.listEmployees = listEmployees;
+        this.listCustomers = listCustomers;
+        this.listDrivers = listDrivers;
+        this.admin = admin;
     }
 
-    //Added these for now to test each menu. Might be easier to go this route
     public boolean authenticateAsAdmin() {
-        return username.equalsIgnoreCase("admin") && password.equals("admin123");
+        return admin != null
+                && admin.getUsername().equals(username)
+                && admin.getPassword().equals(password);
     }
 
-    public boolean authenticateAsCustomer() {
-        return username.equalsIgnoreCase("customer") && password.equals("cust123");
+    public Customer authenticateAsCustomer() {
+        for (Customer c : listCustomers) {
+            if (c.getUsername().equals(username)
+                    && c.getPassword().equals(password)) {
+                return c;
+            }
+        }
+        return null;
     }
 
-    public boolean authenticateAsDeliveryPerson() {
-        return username.equalsIgnoreCase("driver") && password.equals("drive123");
+    public DeliveryPerson authenticateAsDeliveryPerson() {
+        for (DeliveryPerson d : listDrivers) {
+            if (d.getUsername().equals(username)
+                    && d.getPassword().equals(password)) {
+                return d;
+            }
+        }
+        return null;
     }
 }

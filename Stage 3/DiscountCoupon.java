@@ -3,9 +3,11 @@
  * Assignment: Project
  */
 public class DiscountCoupon {
-    private String code;
-    private double discountAmount;
+
+    private final String code;
+    private final double discountAmount; 
     private boolean validity;
+
 
     public DiscountCoupon(String code, double discountAmount, boolean isValid) {
         this.code = code;
@@ -13,38 +15,48 @@ public class DiscountCoupon {
         this.validity = isValid;
     }
 
+
     public double applyDiscount(double price) {
-    if (!validity) {
+    if (!isValid()) {
         return price;
     }
-
-    double result = price - discountAmount;
-
-    if (result < 0) {
-        return 0;
-        } else {
-            return result;
-        }
-    }
-
-
-    public boolean isValid() 
-        { return validity; 
-    }
+    double newPrice;
     
-    public String getCode() 
-        { return code; 
+    if (discountAmount < 1.0) {
+        newPrice = price * (1.0 - discountAmount);
+    } else {
+        newPrice = Math.max(0.0, price - discountAmount);
     }
-    
-    public double getDiscountAmount() 
-        { return discountAmount; 
+    return Math.round(newPrice * 100.0) / 100.0;
     }
-    
-    public boolean getValidity() 
-        { return validity; 
+
+    public boolean isValid() {
+        return validity;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public double getDiscountAmount() {
+        return discountAmount;
+    }
+
+    public boolean getValidity() {
+        return validity;
+    }
+
+    public void invalidate() {
+        this.validity = false;
     }
 
     public void displayDetails() {
-        System.out.println("Coupon " + code + " amount=" + discountAmount + " valid=" + validity);
+        System.out.println(
+            "Coupon { " +
+            "Code='" + code + '\'' +
+            ", Amount=" + discountAmount +
+            ", Valid=" + validity +
+            " }"
+        );
     }
 }

@@ -3,44 +3,50 @@
  * Assignment: Project
  */
 import java.util.ArrayList;
+import java.util.List;
 
-public class Customer {
-    private String customerID;
-    private ArrayList<Order> orderHistory = new ArrayList<>();
+public class Customer extends User {
 
-    public Customer(String customerID, ArrayList<Order> orderHistory) {
+    private final String customerID;
+    private final List<Order> orderHistory = new ArrayList<>();
+
+
+    public Customer(String username, String password, String name, String email,
+                    String phone, String address, String customerID) {
+        super(username, password, name, email, phone, address);
         this.customerID = customerID;
-        if (orderHistory != null) this.orderHistory.addAll(orderHistory);
     }
 
-    public ArrayList<Order> getOrderHistory() 
-        { return orderHistory; 
+
+    public String getCustomerID() {
+        return customerID;
     }
+    
+    
+
+    public List<Order> getOrderHistory() {
+        return new ArrayList<>(orderHistory);
+    }
+
 
     public void displayOrderHistory() {
-        System.out.println("Order history for customer " + customerID + ":");
-        for (Order o : orderHistory) o.displayDetails();
-    }
-
-    public void placeOrder(Order order) {
-        if (order != null) orderHistory.add(order);
-    }
-
-    public void addToOrder(Order order) {
-        if (order != null) System.out.println("Added items to order " + order.getOrderID());
-    }
-
-    public void payBill(Order order) {
-        if (order != null && order.getPayment() != null) {
-            order.getPayment().setPaidStatus(true);
+        if (orderHistory.isEmpty()) {
+            System.out.println("No past orders.");
+        } else {
+            for (Order o : orderHistory) {
+                o.displayDetails();
+            }
         }
     }
 
-    public void viewOrders()
-        { displayOrderHistory();
+    public void recordOrder(Order order) {
+        if (order != null) {
+            orderHistory.add(order);
+        }
     }
 
-    public String getCustomerID()
-        { return customerID; 
+
+    public void viewOrders() {
+        displayOrderHistory();
     }
 }
