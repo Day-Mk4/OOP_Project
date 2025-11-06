@@ -100,6 +100,7 @@ public class Initializer
             String phone = scanner.next();
             Menu menu = listMenus.get(menuCounter);
             newList.add(new Restaurant(ID, name, address, phone, rating, menu));
+            menuCounter++;
         }
         return newList;
     }

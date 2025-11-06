@@ -16,7 +16,7 @@ public class Restaurant {
     private Menu menu;
 
 
-    public Restaurant(String ID, String name, String address, String phone, double rating) {
+    public Restaurant(String ID, String name, String address, String phone, double rating, Menu menu) {
         this.restaurantID = ID;
         this.restaurantName = name;
         this.address = address;
