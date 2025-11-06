@@ -2,75 +2,76 @@
  * Author: Amadeo Pena
  * Assignment: Project
  */
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
-public class DeliveryPerson {
-    private String deliveryPersonID;
-    private ArrayList<Order> assignedOrders = new ArrayList<>();
-    private ArrayList<Order> pastOrders = new ArrayList<>();
+public class DeliveryPerson extends User {
+
+    private final String deliveryPersonID;
+    private final List<Order> assignedOrders = new ArrayList<>();
+    private final List<Order> pastOrders = new ArrayList<>();
     private DeliveryVehicle deliveryVehicle;
 
-    public DeliveryPerson(ArrayList<Order> assignedOrders, ArrayList<Order> pastOrders,
-                          DeliveryVehicle assignedVehicle) {
-        if (assignedOrders != null) 
-            this.assignedOrders.addAll(assignedOrders);
-        
-        if (pastOrders != null) 
-            this.pastOrders.addAll(pastOrders);
-        
-        this.deliveryVehicle = assignedVehicle;
-        this.deliveryPersonID = UUID.randomUUID().toString();
+
+    public DeliveryPerson(String username, String password, String name,
+                          String email, String phone, String address) {
+        super(username, password, name, email, phone, address);
+        this.deliveryPersonID = "DRV-" + UUID.randomUUID().toString().substring(0, 6).toUpperCase();
     }
 
-    public DeliveryPerson(DeliveryVehicle assignedVehicle) {
-        this(null, null, assignedVehicle);
+
+    public String getID() {
+        return deliveryPersonID;
     }
 
-    public String getID() 
-        { return deliveryPersonID; 
+    public List<Order> getAssignedOrders() {
+        return new ArrayList<>(assignedOrders);
     }
 
-    public void assignOrder(String orderID) {
-        Order placeholder = new Order(new String[0][0], null, null, this, new HashSet<>());
-        placeholder.setOrderID(orderID);
-        assignedOrders.add(placeholder);
+    public List<Order> getPastOrders() {
+        return new ArrayList<>(pastOrders);
     }
 
+    public DeliveryVehicle getDeliveryVehicle() {
+        return deliveryVehicle;
+    }
+
+    public void assignDeliveryVehicle(DeliveryVehicle vehicle) {
+        this.deliveryVehicle = vehicle;
+    }
+
+    public void assignOrder(Order order) {
+        if (order != null) {
+            assignedOrders.add(order);
+        }
+    }
+    
     public void completeOrder(String orderID) {
-        Iterator<Order> it = assignedOrders.iterator();
-        while (it.hasNext()) {
-            Order o = it.next();
-            if (o != null && orderID != null && orderID.equals(o.getOrderID())) {
-                it.remove();
-                pastOrders.add(o);
+        Order found = null;
+        for (Order o : assignedOrders) {
+            if (o.getOrderID().equals(orderID)) {
+                found = o;
                 break;
             }
         }
+
+        if (found != null) {
+            assignedOrders.remove(found);
+            pastOrders.add(found);
+            System.out.println("Order " + orderID + " delivered by " + name);
+        }
     }
 
-    public ArrayList<Order> getAssignedOrders() 
-        { return assignedOrders; 
-    }
-    
     public void displayAssignedOrders() {
-        System.out.println("Assigned orders" + deliveryPersonID + ":");
-        for (Order o : assignedOrders) o.displayDetails();
+        for (Order o : assignedOrders) {
+            o.displayDetails();
+        }
     }
 
-    public ArrayList<Order> getPastOrders() 
-        { return pastOrders; 
-    }
-    
     public void displayPastOrders() {
-        System.out.println("Past orders" + deliveryPersonID + ":");
-        for (Order o : pastOrders) o.displayDetails();
-    }
-
-    public DeliveryVehicle getDeliveryVehicles()
-        { return deliveryVehicle; 
-    }
-    
-    public void assignDeliveryVehicle(DeliveryVehicle vehicle) 
-        { this.deliveryVehicle = vehicle;
+        for (Order o : pastOrders) {
+            o.displayDetails();
+        }
     }
 }
