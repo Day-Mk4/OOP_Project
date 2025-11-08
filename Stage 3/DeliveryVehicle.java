@@ -10,7 +10,7 @@ public class DeliveryVehicle {
     private String year;
     private String color;
     private String condition;
-    private DeliveryPerson assignedDriver;
+    private String assignedDriverID;
 
 
     public DeliveryVehicle(String name, String make, String model, String year, String color) {
@@ -72,12 +72,12 @@ public class DeliveryVehicle {
         }
     }
 
-    public DeliveryPerson getAssignedDriver() {
-        return assignedDriver;
+    public String getAssignedDriver() {
+        return assignedDriverID;
     }
 
-    public void setAssignedDriver(DeliveryPerson assignedDriver) {
-        this.assignedDriver = assignedDriver;
+    public void setAssignedDriver(String newID) {
+        assignedDriverID = newID;
     }
 
     public void displayDetails() {
@@ -89,7 +89,7 @@ public class DeliveryVehicle {
             ", Year='" + year + '\'' +
             ", Color='" + color + '\'' +
             ", Condition='" + condition + '\'' +
-            ", Driver=" + (assignedDriver == null ? "None" : assignedDriver.getName()) +
+            ", Driver=" + (assignedDriverID == null ? "None" : assignedDriver.getName()) +
             " }"
         );
     }

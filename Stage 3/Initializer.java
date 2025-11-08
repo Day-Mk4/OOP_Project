@@ -33,6 +33,7 @@ public class Initializer
     public Set<Customer> createGenericCustomers()
     {
         Set<Customer> newList = new HashSet<>();
+        
         return newList;
     }
 
@@ -51,14 +52,20 @@ public class Initializer
             List<String> singlePrices = new ArrayList<>();
             List<String> comboItems = new ArrayList<>();
             List<String> comboPrices = new ArrayList<>();
+            String ID = "";
             while (!scanner.hasNext(""))
             {
-                if (scanner.next() == "S")
+                String next = scanner.next();
+                if (next == "ID")
+                {
+                    ID = scanner.next();
+                }
+                else if (next == "S")
                 {
                     singleItems.add(scanner.next());
                     singlePrices.add(scanner.next());
                 }
-                else if (scanner.next() == "C")
+                else if (next == "C")
                 {
                     comboItems.add(scanner.next());
                     comboPrices.add(scanner.next());
@@ -76,7 +83,7 @@ public class Initializer
                 combosList[x][0] = comboItems.get(x);
                 combosList[x][1] = comboPrices.get(x);
             }
-            Menu menu = new Menu(singlesList, combosList);
+            Menu menu = new Menu(ID, singlesList, combosList);
             newList.add(menu);
         }
         return newList;
@@ -90,7 +97,6 @@ public class Initializer
     {
         Set<Restaurant> newList = new HashSet<>();
         Scanner scanner = new Scanner(new File ("list_restaurants.txt"));
-        int menuCounter = 0;
         while(scanner.hasNextLine())
         {
             String name = scanner.next().replace("_", " ");
@@ -98,9 +104,12 @@ public class Initializer
             String address = scanner.next().replace("_", " ");
             Double rating = scanner.nextDouble();
             String phone = scanner.next();
-            Menu menu = listMenus.get(menuCounter);
+            Menu menu = null;
+            for (Menu m : list3)
+            {
+                if (m.getRestaurantID() == ID) {menu = m;}
+            }
             newList.add(new Restaurant(ID, name, address, phone, rating, menu));
-            menuCounter++;
         }
         return newList;
     }
@@ -108,6 +117,17 @@ public class Initializer
     public Set<DeliveryVehicle> createGenericVehicles()
     {
         Set<DeliveryVehicle> newList = new HashSet<>();
+        Scanner scanner = new Scanner(new File ("list_vehicles.txt"));
+        while(scanner.hasNextLine())
+        {
+            String name = scanner.next().replace("_", " ");
+            String make = scanner.next().replace("_", " ");
+            String model = scanner.next().replace("_", " ");
+            String year = scanner.next().replace("_", " ");
+            String color = scanner.next().replace("_", " ");
+            String condition = scanner.next().replace("_", " ");
+        }
+
         return newList;
     }
 

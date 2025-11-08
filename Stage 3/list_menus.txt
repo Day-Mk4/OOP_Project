@@ -1,3 +1,4 @@
+ID CK001
 S Soda 3.00
 S Fried_Rice 3.00
 S 3_Eggrolls 3.00
@@ -9,6 +10,7 @@ C Chow_Mein_Combo_(Chow_Mein,_Fried_Rice,_Soda) 12.00
 C Sweet_and_Sour_Pork_Combo_(Sweet_and_Sour_Pork,_3_Eggrolls,_Soda) 13.00
 C Kung_Pao_Chicken_Combo_(Kung-Pao_Chicken,_6_Dumplings,_Soda) 18.00
 
+ID JC234
 S Soda 3.00
 S Sweet_Potato_Fries 3.00
 S Coleslaw 3.00

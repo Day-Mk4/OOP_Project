@@ -2,33 +2,96 @@
  * Author: Lazo McCarroll
  * Assignment: Project
  */
-import java.util.ArrayList;
-import java.util.List;
  public class Menu
 {
+    private MenuManager menuManager;
     private String restaurantID;
     private String[][] singleItemList;
     private String[][] comboItemList;
 
-    public Menu(String[][] newSingleItemList, String[][] newComboItemList)
+    public Menu(String newID, String[][] newSingleItemList, String[][] newComboItemList)
     {
+        menuManager = new MenuManager();
+        restaurantID = newID;
         singleItemList = newSingleItemList;
         comboItemList = newComboItemList;
     }
 
+    /////////
+    /// GETTERS
+    /////////
+    
+    public String[][] getSingleItemList()
+    {
+        return singleItemList;
+    }
+
+    public String[][] getComboItemList()
+    {
+        return comboItemList;
+    }
+
+    public String getRestaurantID()
+    {
+        return restaurantID;
+    }
+
+    /////////
+    /// SETTERS & ADDERS
+    /////////
+    
+    /**
+     * This method adds a new item to the singles list by calling the MenuManager method addSingleItem()
+     * @param item
+     * @param price
+     * @param index
+     */
     public void addSingleItem (String item, double price, byte index)
     {
-        String[][] newList = new String[singleItemList.length+1][2];
-        int newListCounter = 0;
-        for (int x = 0; x < singleItemList.length; x++)
-        {
-            if (x == index)
-            {
-                newList[x][]
-            }
-            newList[x][0] = item;
-            newList[x][1] = String.valueOf(price);
-            newListCounter++;
-        }
+        singleItemList = menuManager.addSingleItem(item, price, index, singleItemList);
+    }
+
+    /**
+     * This method adds a new item to the combos list by calling the MenuManager method addComboItem()
+     * @param item
+     * @param price
+     * @param index
+     */
+    public void addComboItem (String item, double price, byte index)
+    {
+        comboItemList = menuManager.addComboItem(item, price, index, comboItemList);
+    }
+
+    /**
+     * This method replaces the item and price Strings of a single item in the singles list
+     * @param item
+     * @param price
+     * @param index
+     */
+    public void setSingleItem (String item, double price, byte index)
+    {
+        singleItemList[index-1][0] = item;
+        singleItemList[index-1][1] = Double.toString(price);;
+    }
+
+    /**
+     * This method replaces the item and price Strings of a single item in the combos list
+     * @param item
+     * @param price
+     * @param index
+     */
+    public void setComboItem (String item, double price, byte index)
+    {
+        comboItemList[index-1][0] = item;
+        comboItemList[index-1][1] = Double.toString(price);;
+    }
+
+    /**
+     * This method sets a new value for the restaurant ID.
+     * @param newID
+     */
+    public void setRestaurantID (String newID)
+    {
+        restaurantID = newID;
     }
 }

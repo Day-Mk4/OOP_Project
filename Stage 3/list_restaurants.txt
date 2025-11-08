@@ -1,4 +1,4 @@
-China_King CK001 301_W_Main-St.,_Anywhere,_NM,_USA 3.6 (505)489-0363
+China_King CK001 301_W_Main_St.,_Anywhere,_NM,_USA 3.6 (505)489-0363
 June's_Country_Restaurant JC234 445_Outskirts_Rd.,_Anywhere,_NM,_USA 4.0 (505)935-8876
 McDonald's MD001 345_E_Main_St.,_Anywhere,_NM,_USA 2.5 (505)606-7521
 Olive_Garden OG001 113_W_Ramada_St.,_Anywhere,_NM,_USA 3.4 (505)112-3345
