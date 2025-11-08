@@ -33,7 +33,18 @@ public class Initializer
     public Set<Customer> createGenericCustomers()
     {
         Set<Customer> newList = new HashSet<>();
-        
+        Scanner scanner = new Scanner(new File ("list_customers.txt"));
+        while (scanner.hasNextLine())
+        {
+            String username = scanner.next();
+            String password = scanner.next();
+            String name = scanner.next().replace("_", " ");
+            String email = scanner.next();
+            String phone = scanner.next();
+            String address = scanner.next().replace("_", " ");
+            String customerID = scanner.next().replace("_", " ");
+            newList.add(new Customer(username, password, name, email, phone, address, customerID));
+        }
         return newList;
     }
 
@@ -44,7 +55,6 @@ public class Initializer
     public List<Menu> createGenericMenus()
     {
         List<Menu> newList = new ArrayList<>();
-        
         Scanner scanner = new Scanner(new File ("list_menus.txt"));
         while(scanner.hasNextLine())
         {
@@ -83,8 +93,7 @@ public class Initializer
                 combosList[x][0] = comboItems.get(x);
                 combosList[x][1] = comboPrices.get(x);
             }
-            Menu menu = new Menu(ID, singlesList, combosList);
-            newList.add(menu);
+            newList.add(new Menu(ID, singlesList, combosList));
         }
         return newList;
     }
