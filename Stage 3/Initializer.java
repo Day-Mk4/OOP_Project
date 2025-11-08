@@ -6,22 +6,22 @@ import java.util.Scanner;
 import java.util.Set;
 public class Initializer
 {
-    private Set<Employee> listEmployees;
-    private Set<Customer> listCustomers;
-    private List<Menu> listMenus;
-    private Set<Restaurant> listRestaurants;
-    private Set<DeliveryVehicle> listVehicles;
-    private Set<DiscountCoupon> listCoupons;
+    public Set<Employee> list1;
+    public Set<Customer> list2;
+    public List<Menu> list3;
+    public Set<Restaurant> list4;
+    public Set<DeliveryVehicle> list5;
+    public Set<DiscountCoupon> list6;
     private Scanner scanner;
 
     public Initializer()
     {
-        listEmployees = createGenericEmployees();
-        listCustomers = createGenericCustomers();
-        listMenus = createGenericMenus();
-        listRestaurants = createGenericRestaurants();
-        listVehicles = createGenericVehicles();
-        listCoupons = createGenericCoupons();
+        list1 = createGenericEmployees();
+        list2 = createGenericCustomers();
+        list3 = createGenericMenus();
+        list4 = createGenericRestaurants();
+        list5 = createGenericVehicles();
+        list6 = createGenericCoupons();
     }
 
     public Set<Employee> createGenericEmployees()

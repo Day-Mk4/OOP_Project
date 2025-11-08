@@ -4,8 +4,8 @@
  */
 public class Main {
     public static void main(String[] args) {
-        Initializer initializer = new Initializer();
-        SubMenuManager app = new SubMenuManager(initializer.createGenericEmployees(), initializer.createGenericCustomers(), initializer.createGenericMenus(), initializer.createGenericRestaurants(), initializer.createGenericVehicles(), initializer.createGenericCoupons());
+        Initializer init = new Initializer();
+        SubMenuManager app = new SubMenuManager(init.list1, init.list2, init.list3, init.list4, init.list5, init.list6);
         app.loginMenu();
     }
 }
