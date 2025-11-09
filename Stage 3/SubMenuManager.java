@@ -7,6 +7,7 @@ import java.util.Set;
 public class SubMenuManager
 {
     private Set<Employee> listEmployees;
+    private Set<DeliveryPerson> listDrivers;
     private Set<Customer> listCustomers;
     private List<Menu> listMenus;
     private Set<Restaurant> listRestaurants;
@@ -14,14 +15,14 @@ public class SubMenuManager
     private Set<DiscountCoupon> listCoupons;
     private final Scanner sc = new Scanner(System.in);
 
-    public SubMenuManager(Set<Employee> list1, Set<Customer> list2, List<Menu> list3, Set<Restaurant> list4, Set<DeliveryVehicle> list5, Set<DiscountCoupon> list6)
+    public SubMenuManager(Set<Admin> list1, Set<DeliveryPerson> list2, Set<Customer> list3, List<Menu> list4, Set<Restaurant> list5, Set<DeliveryVehicle> list6, Set<DiscountCoupon> list7)
     {
-        listEmployees = list1;
-        listCustomers = list2;
-        listMenus = list3;
-        listRestaurants = list4;
-        listVehicles = list5;
-        listCoupons = list6;
+        listEmployees = list1.addAll(list2);
+        listCustomers = list3;
+        listMenus = list4;
+        listRestaurants = list5;
+        listVehicles = list6;
+        listCoupons = list7;
     }
 
     public void loginMenu() {

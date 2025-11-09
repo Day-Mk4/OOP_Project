@@ -13,7 +13,6 @@ public class Initializer
     public Set<Restaurant> list5;
     public Set<DeliveryVehicle> list6;
     public Set<DiscountCoupon> list7;
-    private Scanner scanner;
 
     public Initializer()
     {
@@ -29,12 +28,50 @@ public class Initializer
     public Set<Admin> createGenericAdmins()
     {
         Set<Admin> newList = new HashSet<>();
+        Scanner scanner = new Scanner(new File ("list_employees.txt"));
+        while(scanner.hasNextLine())
+        {
+            String next = scanner.next();
+            if (next == "A")
+            {
+                String username = scanner.next();
+                String password = scanner.next();
+                String name = scanner.next().replace("_", " ");
+                String email = scanner.next();
+                String phone = scanner.next();
+                String address = scanner.next().replace("_", " ");
+                newList.add(new Admin(username, password, name, email, phone, address));
+            }
+            else if (next == "D")
+            {
+                for (int i = 0; i < 6; i++) {scanner.next();}
+            }
+        }
         return newList;
     }
 
     public Set<DeliveryPerson> createGenericDrivers()
     {
         Set<DeliveryPerson> newList = new HashSet<>();
+        Scanner scanner = new Scanner(new File ("list_employees.txt"));
+        while(scanner.hasNextLine())
+        {
+            String next = scanner.next();
+            if (next == "D")
+            {
+                String username = scanner.next();
+                String password = scanner.next();
+                String name = scanner.next().replace("_", " ");
+                String email = scanner.next();
+                String phone = scanner.next();
+                String address = scanner.next().replace("_", " ");
+                newList.add(new DeliveryPerson(username, password, name, email, phone, address));
+            }
+            else if (next == "A")
+            {
+                for (int i = 0; i < 6; i++) {scanner.next();}
+            }
+        }
         return newList;
     }
 
