@@ -6,23 +6,37 @@ import java.util.Scanner;
 import java.util.Set;
 public class Initializer
 {
-    public Set<Admin> list1;
-    public Set<DeliveryPerson> list2;
-    public Set<Customer> list3;
-    public List<Menu> list4;
-    public Set<Restaurant> list5;
-    public Set<DeliveryVehicle> list6;
-    public Set<DiscountCoupon> list7;
+    public Set<Admin> universalAdmins;
+    public Set<DeliveryPerson> universalDrivers;
+    public Set<Customer> universalCustomers;
+    public List<Menu> universalMenus;
+    public Set<Restaurant> universalRestaurants;
+    public Set<DeliveryVehicle> universalVehicles;
+    public Set<DiscountCoupon> universalCoupons;
+    public List<Payment> universalPayments;
+    public List<Order> universalOrders;
 
     public Initializer()
     {
-        list1 = createGenericAdmins();
-        list2 = createGenericDrivers();
-        list3 = createGenericCustomers();
-        list4 = createGenericMenus();
-        list5 = createGenericRestaurants();
-        list6 = createGenericVehicles();
-        list7 = createGenericCoupons();
+        universalPayments = createGenericPayments();
+        universalOrders = createGenericOrders();
+        universalMenus = createGenericMenus();
+        universalRestaurants = createGenericRestaurants();
+        universalCoupons = createGenericCoupons();
+        universalCustomers = createGenericCustomers();
+        universalVehicles = createGenericVehicles();
+        universalDrivers = createGenericDrivers();
+        universalAdmins = createGenericAdmins();
+    }
+
+    public List<Payment> createGenericPayments()
+    {
+        return null;
+    }
+
+    public List<Order> createGenericOrders()
+    {
+        return null;
     }
 
     public Set<Admin> createGenericAdmins()
@@ -59,13 +73,28 @@ public class Initializer
             String next = scanner.next();
             if (next == "D")
             {
+                List<Payment> driverPayments = null;
+                List<Order> assignedOrders = null;
+                List<Order> pastOrders = null;
                 String username = scanner.next();
                 String password = scanner.next();
                 String name = scanner.next().replace("_", " ");
                 String email = scanner.next();
                 String phone = scanner.next();
                 String address = scanner.next().replace("_", " ");
-                newList.add(new DeliveryPerson(username, password, name, email, phone, address));
+                for (int x=0; x < list2.size(); x++)
+                {
+                    if (list2.get(x).getDeliveryPersonName() == name && list2.get(x).getPayment().getPaidStatus() == false)
+                    {
+                        assignedOrders.add(list2.get(x));
+                    }
+                    else if (list2.get(x).getDeliveryPersonName() == name && list2.get(x).getPayment().getPaidStatus() == true)
+                    {
+                        pastOrders.add(list2.get(x));
+                        driverPayments.add(list2.get(x).getPayment());
+                    }
+                }
+                newList.add(new DeliveryPerson(username, password, name, email, phone, address, driverPayments, assignedOrders, pastOrders));
             }
             else if (next == "A")
             {
@@ -202,4 +231,6 @@ public class Initializer
         }
         return newList;
     }
+
+    public Set
 }

@@ -10,17 +10,17 @@ public class Order
     private Payment payment;
     private final String restaurantName;
     private final String customerName;
-    private String deliveryPersonID;
+    private String deliveryPersonName;
     private Set<DiscountCoupon> appliedCoupons;
 
-    public Order(String newOrderID, String newPaymentID, String[][] newOrderItems, Set<DiscountCoupon> newAppliedCoupons, String newRestName, String newCustName, String newDriverID)
+    public Order(String newOrderID, String newPaymentID, String[][] newOrderItems, Set<DiscountCoupon> newAppliedCoupons, String newRestName, String newCustName, String newDriverName)
     {
         orderID = newOrderID;
         appliedCoupons = newAppliedCoupons;
         payment = new Payment(newPaymentID, 0.0, false);
         restaurantName = newRestName;
         customerName  = newCustName;
-        deliveryPersonID = newDriverID;
+        deliveryPersonName = newDriverName;
         setOrderItems(newOrderItems);
     }
 
@@ -48,6 +48,11 @@ public class Order
         return appliedCoupons;
     }
 
+    public String getDeliveryPersonName()
+    {
+        return deliveryPersonName;
+    }
+
     /////////
     /// SETTERS & ADDERS
     /////////
@@ -61,6 +66,16 @@ public class Order
     {
         orderItems = newOrderItems;
         payment.setPrice(payment.calculatePrice(orderItems, appliedCoupons));
+    }
+
+    public void setPayment(Payment newPayment)
+    {
+        payment = newPayment;
+    }
+
+    public void setDeliveryPersonName(String newDPName)
+    {
+        deliveryPersonName = newDPName;
     }
     
     /////////
