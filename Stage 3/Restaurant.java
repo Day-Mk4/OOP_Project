@@ -72,9 +72,9 @@ public class Restaurant {
         this.menu = menu;
     }
 
-    public void updateMenu(String name, double price) {
+    public void updateMenu(String name, double price, byte index) {
         if (menu != null) {
-            menu.updateSingleItem(name, price);
+            menu.setSingleItem(name, price, index);
         }
     }
 

@@ -6,27 +6,35 @@ import java.util.Scanner;
 import java.util.Set;
 public class Initializer
 {
-    public Set<Employee> list1;
-    public Set<Customer> list2;
-    public List<Menu> list3;
-    public Set<Restaurant> list4;
-    public Set<DeliveryVehicle> list5;
-    public Set<DiscountCoupon> list6;
+    public Set<Admin> list1;
+    public Set<DeliveryPerson> list2;
+    public Set<Customer> list3;
+    public List<Menu> list4;
+    public Set<Restaurant> list5;
+    public Set<DeliveryVehicle> list6;
+    public Set<DiscountCoupon> list7;
     private Scanner scanner;
 
     public Initializer()
     {
-        list1 = createGenericEmployees();
-        list2 = createGenericCustomers();
-        list3 = createGenericMenus();
-        list4 = createGenericRestaurants();
-        list5 = createGenericVehicles();
-        list6 = createGenericCoupons();
+        list1 = createGenericAdmins();
+        list2 = createGenericDrivers();
+        list3 = createGenericCustomers();
+        list4 = createGenericMenus();
+        list5 = createGenericRestaurants();
+        list6 = createGenericVehicles();
+        list7 = createGenericCoupons();
     }
 
-    public Set<Employee> createGenericEmployees()
+    public Set<Admin> createGenericAdmins()
     {
-        Set<Employee> newList = new HashSet<>();
+        Set<Admin> newList = new HashSet<>();
+        return newList;
+    }
+
+    public Set<DeliveryPerson> createGenericDrivers()
+    {
+        Set<DeliveryPerson> newList = new HashSet<>();
         return newList;
     }
 
@@ -114,7 +122,7 @@ public class Initializer
             Double rating = scanner.nextDouble();
             String phone = scanner.next();
             Menu menu = null;
-            for (Menu m : list3)
+            for (Menu m : list4)
             {
                 if (m.getRestaurantID() == ID) {menu = m;}
             }

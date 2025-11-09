@@ -157,7 +157,7 @@ public class SubMenuManager
 
         DeliveryPerson dp = listDrivers.iterator().next();
         String[][] arr = items.toArray(new String[0][0]);
-        Order order = new Order(arr, selected, cust, dp, used);
+        Order order = new Order(arr, selected, cust, dp.getID(), used);
 
         selected.addOrder(order);
         listOrders.add(order);

@@ -37,4 +37,18 @@ public class MenuManager
         }
         return newList;
     }
+
+    public void displayCompleteMenu(String[][] singleItemList, String[][] comboItemList)
+    {
+        System.out.println("A LA CARTE MENU:");
+        for (int x = 0; x < singleItemList.length; x++)
+        {
+            System.out.println(singleItemList[x][0]+", "+singleItemList[x][1]);
+        }
+        System.out.println("\nCOMBO MENU:");
+        for (int x = 0; x < comboItemList.length; x++)
+        {
+            System.out.println(comboItemList[x][0]+", "+comboItemList[x][1]);
+        }
+    }
 }

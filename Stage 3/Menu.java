@@ -94,4 +94,9 @@
     {
         restaurantID = newID;
     }
+
+    public void displayCompleteMenu()
+    {
+        menuManager.displayCompleteMenu(singleItemList, comboItemList);
+    }
 }

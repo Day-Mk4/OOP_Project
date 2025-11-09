@@ -13,13 +13,14 @@ public class DeliveryVehicle {
     private String assignedDriverID;
 
 
-    public DeliveryVehicle(String name, String make, String model, String year, String color) {
-        this.name = name;
-        this.make = make;
-        this.model = model;
-        this.year = year;
-        this.color = color;
-        this.condition = "Good";
+    public DeliveryVehicle(String newName, String newMake, String newModel, String newYear, String newColor, String newCondition, String newAssignedDriverID) {
+        name = newName;
+        make = newMake;
+        model = newModel;
+        year = newYear;
+        color = newColor;
+        condition = newCondition;
+        assignedDriverID = newAssignedDriverID;
     }
 
     public String getName() {
@@ -89,7 +90,7 @@ public class DeliveryVehicle {
             ", Year='" + year + '\'' +
             ", Color='" + color + '\'' +
             ", Condition='" + condition + '\'' +
-            ", Driver=" + (assignedDriverID == null ? "None" : assignedDriver.getName()) +
+            ", Driver=" + (assignedDriverID == null ? "None" : assignedDriverID) +
             " }"
         );
     }

@@ -5,15 +5,13 @@
 import java.util.Set;
 public class Payment
 {
+    private PaymentManager paymentManager;
     private String paymentID;
     private Double price;
     private Boolean paidStatus;
 
     /**
      * This method initializes the instance variables.
-     * 
-     * NOTE TO AMADEO 11/1:  Not all of the UML diagram's variables are here. I'm reconsidering what variables
-     * that this class should have - see Prof. notes on Stage 2
      * @param newPaymentID
      * @param newPrice
      * @param newPaidStatus
@@ -25,7 +23,9 @@ public class Payment
         paidStatus = newPaidStatus;
     }
 
-    // GETTERS
+    /////////
+    /// GETTERS
+    /////////
 
     /**
      * This method returns the payment ID.
@@ -54,7 +54,9 @@ public class Payment
         return paidStatus;
     }
 
-    // SETTERS
+    /////////
+    /// SETTERS & ADDERS
+    /////////
 
     /**
      * This method sets a new value for the payment ID.
@@ -83,13 +85,20 @@ public class Payment
         paidStatus = newPaidStatus;
     }
 
-    // MISC
+    /////////
+    /// MISC
+    /////////
 
     /**
      * This method displays all of the details of the payment
      */
-    public void displayPaymentDetails()
+    public void displayDetails()
     {
         System.out.println("Payment ID: "+paymentID+"\nTotal price: "+price+"\nStatus of Payment: "+paidStatus);
+    }
+
+    public double calculatePrice(String[][] orderItems, Set<DiscountCoupon> appliedCoupons)
+    {
+        return paymentManager.calculatePrice(orderItems, appliedCoupons);
     }
 }
