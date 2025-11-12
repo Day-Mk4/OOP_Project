@@ -1,6 +1,7 @@
+import java.util.Set;
 public class CustomerMenu
 {
-    private void customerMenu(Customer cust, Set<Restaurant> listRestaurants, Set<Order> listOrders) {
+    private CustomerMenu(Customer cust, Set<Restaurant> listRestaurants, Set<Order> listOrders) {
         while (true) {
             System.out.println("\nCustomer Menu - " + cust.getName());
             System.out.println("1) Browse Restaurants");
