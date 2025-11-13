@@ -11,7 +11,7 @@ public class User {
     public String phone;
     public String address;
 
-    // Construct a new user
+    // Constructor for new user
     public User(String username, String password, String name,
                 String email, String phone, String address) {
         this.username = username;
