@@ -16,7 +16,7 @@ public class Restaurant {
     private Menu menu;
 
 
-    public Restaurant(String ID, String name, String address, String phone, double rating, Menu menu) {
+    public Restaurant(String ID, String name, String address, String phone, double rating) {
         this.restaurantID = ID;
         this.restaurantName = name;
         this.address = address;
@@ -72,9 +72,9 @@ public class Restaurant {
         this.menu = menu;
     }
 
-    public void updateMenu(String name, double price, byte index) {
+    public void updateMenu(String name, double price) {
         if (menu != null) {
-            menu.setSingleItem(name, price, index);
+            menu.updateSingleItem(name, price);
         }
     }
 

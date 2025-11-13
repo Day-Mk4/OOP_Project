@@ -1,95 +1,125 @@
 /**
- * Author: Lazo McCarroll
+ * Author: 
  * Assignment: Project
  */
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
-public class Order
-{
-    private String orderID;
-    private String[][] orderItems;
-    private Payment payment;
-    private final String restaurantName;
-    private final String customerName;
-    private String deliveryPersonName;
-    private Set<DiscountCoupon> appliedCoupons;
+import java.util.UUID;
 
-    public Order(String newOrderID, String newPaymentID, String[][] newOrderItems, Set<DiscountCoupon> newAppliedCoupons, String newRestName, String newCustName, String newDriverName)
-    {
-        orderID = newOrderID;
-        appliedCoupons = newAppliedCoupons;
-        payment = new Payment(newPaymentID, 0.0, false);
-        restaurantName = newRestName;
-        customerName  = newCustName;
-        deliveryPersonName = newDriverName;
-        setOrderItems(newOrderItems);
+public class Order {
+
+    private final String orderID;
+    private final List<String[]> orderItems = new ArrayList<>(); 
+    private double price;
+    private final Restaurant restaurant;
+    private final Customer customer;
+    private DeliveryPerson deliveryPerson;
+    private Payment payment;
+    private final Set<DiscountCoupon> appliedCoupons;
+
+
+    public Order(String[][] items, Restaurant restaurant, Customer customer,
+                 DeliveryPerson deliveryPerson, Set<DiscountCoupon> coupons) {
+
+        this.orderID = "ORD-" + UUID.randomUUID().toString().substring(0, 6).toUpperCase();
+
+        if (items != null) {
+            for (String[] row : items) {
+                orderItems.add(row);
+            }
+        }
+
+        this.restaurant = restaurant;
+        this.customer = customer;
+        this.deliveryPerson = deliveryPerson;
+        this.appliedCoupons = coupons;
+        this.price = calculatePrice();
     }
 
-    /////////
-    /// GETTERS
-    /////////
 
-    public String getOrderID()
-    {
+    public String getOrderID() {
         return orderID;
     }
 
-    public String[][] getOrderItems()
-    {
-        return orderItems;
+    public void setOrderID(String id) {
+   
     }
 
-    public Payment getPayment()
-    {
+    public List<String[]> getOrderItems() {
+        return new ArrayList<>(orderItems);
+    }
+
+    public void removeOrderItems(String itemName) {
+    for (int i = 0; i < orderItems.size(); i++) {
+        if (orderItems.get(i)[0].equalsIgnoreCase(itemName)) {
+            orderItems.remove(i);
+            i--; 
+        }
+    }
+    price = calculatePrice();
+    }
+
+
+    public double getPrice() {
+        return price;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public String getCustomer() {
+        return customer.getCustomerID();
+    }
+
+    public Customer getCustomerObj() {
+        return customer;
+    }
+
+    public DeliveryPerson getDeliveryPerson() {
+        return deliveryPerson;
+    }
+
+    public void setDeliveryPerson(DeliveryPerson dp) {
+        this.deliveryPerson = dp;
+    }
+
+    public Payment getPayment() {
         return payment;
     }
 
-    public Set<DiscountCoupon> getCoupons()
-    {
-        return appliedCoupons;
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 
-    public String getDeliveryPersonName()
-    {
-        return deliveryPersonName;
+
+    public double calculatePrice() {
+        double sum = 0.0;
+
+        for (String[] row : orderItems) {
+            double p = Double.parseDouble(row[1]);
+            int q = Integer.parseInt(row[2]);
+            sum += p * q;
+        }
+
+        double discounted = sum;
+        if (appliedCoupons != null) {
+            for (DiscountCoupon c : appliedCoupons) {
+                discounted = c.applyDiscount(discounted);
+            }
+        }
+
+        return Math.round(discounted * 100.0) / 100.0;
     }
 
-    /////////
-    /// SETTERS & ADDERS
-    /////////
-
-    public void setOrderID(String newOrderID)
-    {
-        orderID = newOrderID;
-    }
-
-    public void setOrderItems(String[][] newOrderItems)
-    {
-        orderItems = newOrderItems;
-        payment.setPrice(payment.calculatePrice(orderItems, appliedCoupons));
-    }
-
-    public void setPayment(Payment newPayment)
-    {
-        payment = newPayment;
-    }
-
-    public void setDeliveryPersonName(String newDPName)
-    {
-        deliveryPersonName = newDPName;
-    }
-    
-    /////////
-    /// MISC
-    /////////
-
-    public void displayDetails()
-    {
-        System.out.println("Order " + orderID + " @ " + restaurantName + " for " + customerName);
+    public void displayDetails() {
+        System.out.println("Order " + orderID + " @ " + restaurant.getName() + " for " + customer.getName());
 
         for (String[] row : orderItems) {
             System.out.println("  - " + row[0] + " x" + row[2] + " @ $" + row[1]);
         }
 
-        System.out.println("Total: $" + payment.getPrice());
+        System.out.println("Total: $" + getPrice());
     }
 }

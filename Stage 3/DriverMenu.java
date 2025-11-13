@@ -1,52 +1,36 @@
-import java.util.ArrayList;
-import java.util.List;
+/**
+ * Author: Amadeo Pena
+ * Assignment: Project
+ */
 import java.util.Scanner;
-public class DriverMenu
-{
-    DeliveryPerson self;
-    public DriverMenu(DeliveryPerson dp)
-    {
-        self = dp;
 
+public class DriverMenu {
+    private final DeliveryPerson dp;
+    private final Scanner sc;
+
+    public DriverMenu(DeliveryPerson dp, Scanner sc) {
+        this.dp = dp;
+        this.sc = sc;
+    }
+
+    public void run() {
         while (true) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("\nDelivery Menu - " + self.getName());
-        System.out.println("1) View Assigned Orders");
-        System.out.println("2) Complete Order");
-        System.out.println("0) Back");
-        String ch = sc.nextLine().trim();
-        switch (ch) {
-            case "0":
-                return;
-            case "1":
-                self.displayAssignedOrders();
-                break;
-            case "2":
-                System.out.print("Order ID: ");
-                String oid = sc.nextLine().trim();
-                self.completeOrder(oid);
-                break;
-            default:
-                System.out.println("Bad choice.");
+            System.out.println("\nDelivery Menu - " + dp.getName());
+            System.out.println("1) View Assigned Orders");
+            System.out.println("2) Complete Order");
+            System.out.println("0) Back");
+            String ch = sc.nextLine().trim();
+
+            switch (ch) {
+                case "1" -> dp.displayAssignedOrders();
+                case "2" -> {
+                    System.out.print("Order ID: ");
+                    String oid = sc.nextLine().trim();
+                    dp.completeOrder(oid);
+                }
+                case "0" -> { return; }
+                default -> System.out.println("Bad choice.");
             }
         }
-    }
-
-    public DeliveryPerson getDP()
-    {
-        return self;
-    }
-
-    public List<Order> getListOrders()
-    {
-        List<Order> newList = new ArrayList<>();
-        newList.addAll(self.getAssignedOrders());
-        newList.addAll(self.getPastOrders());
-        return newList;
-    }
-
-    public List<Payment> getListPayments()
-    {
-        return self.getDriverPayments();
     }
 }

@@ -9,23 +9,15 @@ import java.util.Set;
 
 public class Admin extends User {
 
-    private Set<Customer> managedCustomers = new HashSet<>();
-    private Set<Restaurant> managedRestaurants = new HashSet<>();
-    private Set<DeliveryPerson> managedDeliveryPeople = new HashSet<>();
-    private Set<DeliveryVehicle> managedVehicles = new HashSet<>();
-    private List<Order> listOrders = new ArrayList<>();
-    private List<Payment> listPayments = new ArrayList<>();
+    private final Set<Customer> managedCustomers = new HashSet<>();
+    private final Set<Restaurant> managedRestaurants = new HashSet<>();
+    private final Set<DeliveryPerson> managedDeliveryPeople = new HashSet<>();
+    private final Set<DeliveryVehicle> managedVehicles = new HashSet<>();
+    private final List<Order> listOrders = new ArrayList<>();
+    private final List<Payment> listPayments = new ArrayList<>();
 
-    public Admin(String username, String password, String name, String email, String phone, String address, Set<Customer> listCustomers, Set<Restaurant> listRestaurants, Set<DeliveryPerson> listDrivers, Set<DeliveryVehicle> listVehicles, List<Order> listOrders, List<Payment> listPayments) {
+    public Admin(String username, String password, String name, String email, String phone, String address) {
         super(username, password, name, email, phone, address);
-        managedCustomers = listCustomers;
-        managedRestaurants = listRestaurants;
-        managedDeliveryPeople = listDrivers;
-        managedVehicles = listVehicles;
-        this.listOrders = listOrders;
-        this.listPayments = listPayments;
-        this.listOrders = listOrders;
-        this.listPayments = listPayments;
     }
 
 
@@ -142,11 +134,4 @@ public class Admin extends User {
     public Set<DeliveryVehicle> vehicles() {
         return managedVehicles;
     }
-
-    public Set<Customer> getManagedCustomers() {return managedCustomers;}
-    public Set<Restaurant> getManagedRestaurants() {return managedRestaurants;}
-    public Set<DeliveryPerson> getManagedDrivers() {return managedDeliveryPeople;}
-    public Set<DeliveryVehicle> getManagedVehicles() {return managedVehicles;}
-    public List<Order> getManagedOrders() {return listOrders;}
-    public List<Payment> getManagedPayments() {return listPayments;}
 }

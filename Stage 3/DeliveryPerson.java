@@ -9,18 +9,14 @@ import java.util.UUID;
 public class DeliveryPerson extends User {
 
     private final String deliveryPersonID;
-    private List<Payment> driverPayments;
-    private List<Order> assignedOrders = new ArrayList<>();
-    private List<Order> pastOrders = new ArrayList<>();
+    private final List<Order> assignedOrders = new ArrayList<>();
+    private final List<Order> pastOrders = new ArrayList<>();
     private DeliveryVehicle deliveryVehicle;
 
 
     public DeliveryPerson(String username, String password, String name,
-                          String email, String phone, String address, List<Payment> newListPayments, List<Order> newAssignedOrders, List<Order> newPastOrders) {
+                          String email, String phone, String address) {
         super(username, password, name, email, phone, address);
-        driverPayments = newListPayments;
-        assignedOrders = newAssignedOrders;
-        pastOrders = newPastOrders;
         this.deliveryPersonID = "DRV-" + UUID.randomUUID().toString().substring(0, 6).toUpperCase();
     }
 
@@ -30,15 +26,11 @@ public class DeliveryPerson extends User {
     }
 
     public List<Order> getAssignedOrders() {
-        return assignedOrders;
+        return new ArrayList<>(assignedOrders);
     }
 
     public List<Order> getPastOrders() {
-        return pastOrders;
-    }
-
-    public List<Payment> getDriverPayments() {
-        return driverPayments;
+        return new ArrayList<>(pastOrders);
     }
 
     public DeliveryVehicle getDeliveryVehicle() {

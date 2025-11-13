@@ -1,102 +1,66 @@
 /**
- * Author: Lazo McCarroll
+ * Author: 
  * Assignment: Project
  */
- public class Menu
-{
-    private MenuManager menuManager;
-    private String restaurantID;
-    private String[][] singleItemList;
-    private String[][] comboItemList;
+import java.util.HashMap;
+import java.util.Map;
 
-    public Menu(String newID, String[][] newSingleItemList, String[][] newComboItemList)
-    {
-        menuManager = new MenuManager();
-        restaurantID = newID;
-        singleItemList = newSingleItemList;
-        comboItemList = newComboItemList;
+public class Menu {
+
+    private final Restaurant restaurant;
+    private final Map<String, Double> singles = new HashMap<>();
+    private final Map<String, Double> combos = new HashMap<>();
+
+
+    public Menu(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
-    /////////
-    /// GETTERS
-    /////////
+    public void addSingleItem(String name, double price) {
+        singles.put(name, price);
+    }
+
+    public void updateSingleItem(String name, double price) {
+        singles.put(name, price);
+    }
+
+    public void removeSingleItem(String name) {
+        singles.remove(name);
+    }
+
+    public void addComboItem(String name, double price) {
+        combos.put(name, price);
+    }
+
+    public void updateComboItem(String name, double price) {
+        combos.put(name, price);
+    }
+
+    public void removeComboItem(String name) {
+        combos.remove(name);
+    }
+
     
-    public String[][] getSingleItemList()
-    {
-        return singleItemList;
+    public Map<String, Double> getSingles() {
+        return singles;
     }
 
-    public String[][] getComboItemList()
-    {
-        return comboItemList;
+    public Map<String, Double> getCombos() {
+        return combos;
     }
 
-    public String getRestaurantID()
-    {
-        return restaurantID;
+    public void displaySinglesMenu() {
+        System.out.println("-- Singles --");
+        singles.forEach((k, v) -> System.out.println("  " + k + " .... $" + v));
     }
 
-    /////////
-    /// SETTERS & ADDERS
-    /////////
-    
-    /**
-     * This method adds a new item to the singles list by calling the MenuManager method addSingleItem()
-     * @param item
-     * @param price
-     * @param index
-     */
-    public void addSingleItem (String item, double price, byte index)
-    {
-        singleItemList = menuManager.addSingleItem(item, price, index, singleItemList);
+    public void displayCombosMenu() {
+        System.out.println("-- Combos --");
+        combos.forEach((k, v) -> System.out.println("  " + k + " .... $" + v));
     }
 
-    /**
-     * This method adds a new item to the combos list by calling the MenuManager method addComboItem()
-     * @param item
-     * @param price
-     * @param index
-     */
-    public void addComboItem (String item, double price, byte index)
-    {
-        comboItemList = menuManager.addComboItem(item, price, index, comboItemList);
-    }
-
-    /**
-     * This method replaces the item and price Strings of a single item in the singles list
-     * @param item
-     * @param price
-     * @param index
-     */
-    public void setSingleItem (String item, double price, byte index)
-    {
-        singleItemList[index-1][0] = item;
-        singleItemList[index-1][1] = Double.toString(price);;
-    }
-
-    /**
-     * This method replaces the item and price Strings of a single item in the combos list
-     * @param item
-     * @param price
-     * @param index
-     */
-    public void setComboItem (String item, double price, byte index)
-    {
-        comboItemList[index-1][0] = item;
-        comboItemList[index-1][1] = Double.toString(price);;
-    }
-
-    /**
-     * This method sets a new value for the restaurant ID.
-     * @param newID
-     */
-    public void setRestaurantID (String newID)
-    {
-        restaurantID = newID;
-    }
-
-    public void displayCompleteMenu()
-    {
-        menuManager.displayCompleteMenu(singleItemList, comboItemList);
+    public void displayCompleteMenu() {
+        displaySinglesMenu();
+        displayCombosMenu();
     }
 }

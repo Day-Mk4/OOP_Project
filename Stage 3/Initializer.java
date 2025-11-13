@@ -1,236 +1,161 @@
-import java.io.File;
-import java.util.HashSet;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Set;
-public class Initializer
-{
-    public Set<Admin> universalAdmins;
-    public Set<DeliveryPerson> universalDrivers;
-    public Set<Customer> universalCustomers;
-    public List<Menu> universalMenus;
-    public Set<Restaurant> universalRestaurants;
-    public Set<DeliveryVehicle> universalVehicles;
-    public Set<DiscountCoupon> universalCoupons;
-    public List<Payment> universalPayments;
-    public List<Order> universalOrders;
+/**
+ * Author: Amadeo Pena
+ * Assignment: Project
+ */
+import java.util.*;
 
-    public Initializer()
-    {
-        universalPayments = createGenericPayments();
-        universalOrders = createGenericOrders();
-        universalMenus = createGenericMenus();
-        universalRestaurants = createGenericRestaurants();
-        universalCoupons = createGenericCoupons();
-        universalCustomers = createGenericCustomers();
-        universalVehicles = createGenericVehicles();
-        universalDrivers = createGenericDrivers();
-        universalAdmins = createGenericAdmins();
+public class Initializer {
+
+    private final Set<Employee> listEmployees = new HashSet<>();
+    private final Set<Customer> listCustomers = new HashSet<>();
+    private final Set<Restaurant> listRestaurants = new HashSet<>();
+    private final Set<DeliveryVehicle> listVehicles = new HashSet<>();
+    private final Set<DiscountCoupon> listCoupons = new HashSet<>();
+    private final Set<DeliveryPerson> listDrivers = new HashSet<>();
+    private final List<Order> listOrders = new ArrayList<>();
+    private final List<Payment> listPayments = new ArrayList<>();
+    private final List<Menu> listMenus = new ArrayList<>();
+
+    private final Admin admin = new Admin(
+        "admin", "admin123", "System Admin", "admin@swift.com", "555-0000","ADM"
+    );
+
+    private final Scanner sc = new Scanner(System.in);
+
+    public void Run() {
+        createGenericEmployees();
+        createGenericCustomers();
+        createGenericRestaurantsAndMenus();
+        createGenericDriversAndVehicles();
+        createGenericCoupons();
+        System.out.println("=== SwiftBytes ===");
+        loginMenu();
     }
 
-    public List<Payment> createGenericPayments()
-    {
-        return null;
+    private void createGenericEmployees() {
+        listEmployees.add(new Employee("emp1", "pw", "Emily Employee", "e@swift.com", "555-5555","EMP"));
     }
 
-    public List<Order> createGenericOrders()
-    {
-        return null;
+    private void createGenericCustomers() {
+        listCustomers.add(new Customer("day", "pw", "Amadeo Pena", "day@yahoo.com", "555-2222", "NM", "CUST-001"));
+        listCustomers.add(new Customer("lazo", "pw", "Lazo McCarrol", "lazo@gmail.com", "123-1234", "NM", "CUST-002"));
     }
 
-    public Set<Admin> createGenericAdmins()
-    {
-        Set<Admin> newList = new HashSet<>();
-        Scanner scanner = new Scanner(new File ("list_employees.txt"));
-        while(scanner.hasNextLine())
-        {
-            String next = scanner.next();
-            if (next == "A")
-            {
-                String username = scanner.next();
-                String password = scanner.next();
-                String name = scanner.next().replace("_", " ");
-                String email = scanner.next();
-                String phone = scanner.next();
-                String address = scanner.next().replace("_", " ");
-                newList.add(new Admin(username, password, name, email, phone, address));
-            }
-            else if (next == "D")
-            {
-                for (int i = 0; i < 6; i++) {scanner.next();}
-            }
-        }
-        return newList;
+    private void createGenericRestaurantsAndMenus() {
+        Restaurant r1 = new Restaurant("R-101", "China King", "301 W Main St., ABQ", "(505)489-0363", 3.6);
+        Restaurant r2 = new Restaurant("R-102", "June's Country Restaurant", "445 Outskirts Rd., ABQ", "(505)935-8876", 4.0);
+        Restaurant r3 = new Restaurant("R-103", "McDonald's", "345 E Main St., ABQ", "(505)606-7521", 2.5);
+        Restaurant r4 = new Restaurant("R-104", "Olive Garden", "113 W Ramada St., ABQ", "(505)112-3345", 3.4);
+        Restaurant r5 = new Restaurant("R-105", "Saheel's Authentic Indian Food", "678 Wedding St., ABQ", "(505)698-0034", 4.6);
+
+        Menu m1 = new Menu(r1);
+        m1.addSingleItem("Soda", 3.00);
+        m1.addSingleItem("Fried Rice", 3.00);
+        m1.addSingleItem("3 Eggrolls", 3.00);
+        m1.addSingleItem("6 Dumplings", 3.50);
+        m1.addSingleItem("Chow Mein", 8.00);
+        m1.addSingleItem("Sweet and Sour Pork", 10.00);
+        m1.addSingleItem("Kung Pao Chicken", 15.00);
+        r1.setMenu(m1);
+
+        Menu m2 = new Menu(r2);
+        m2.addSingleItem("Soda", 3.00);
+        m2.addSingleItem("Sweet Potato Fries", 3.00);
+        m2.addSingleItem("Coleslaw", 3.00);
+        m2.addSingleItem("Jalapeno Poppers", 3.50);
+        m2.addSingleItem("Pulled Pork Sandwich", 8.00);
+        m2.addSingleItem("Mushroom Burger", 10.00);
+        m2.addSingleItem("Chicken Fried Steak", 15.00);
+        r2.setMenu(m2);
+
+        Menu m3 = new Menu(r3);
+        m3.addSingleItem("Fries + Drink", 5.99);
+        m3.addSingleItem("Burger", 9.99);
+        m3.addComboItem("Combo", 13.99);
+        r3.setMenu(m3);
+
+        Menu m4 = new Menu(r4);
+        m4.addSingleItem("Drink + side", 7.00);
+        m4.addSingleItem("Spaghetti", 8.00);
+        m4.addComboItem("Steak", 15.00);
+        r4.setMenu(m4);
+
+        listRestaurants.addAll(Arrays.asList(r1, r2, r3, r4, r5));
+        listMenus.addAll(Arrays.asList(m1, m2, m3, m4));
+
+        admin.addRestaurant(r1);
+        admin.addRestaurant(r2);
+        admin.addRestaurant(r3);
+        admin.addRestaurant(r4);
+        admin.addRestaurant(r5);
     }
 
-    public Set<DeliveryPerson> createGenericDrivers()
-    {
-        Set<DeliveryPerson> newList = new HashSet<>();
-        Scanner scanner = new Scanner(new File ("list_employees.txt"));
-        while(scanner.hasNextLine())
-        {
-            String next = scanner.next();
-            if (next == "D")
-            {
-                List<Payment> driverPayments = null;
-                List<Order> assignedOrders = null;
-                List<Order> pastOrders = null;
-                String username = scanner.next();
-                String password = scanner.next();
-                String name = scanner.next().replace("_", " ");
-                String email = scanner.next();
-                String phone = scanner.next();
-                String address = scanner.next().replace("_", " ");
-                for (int x=0; x < list2.size(); x++)
-                {
-                    if (list2.get(x).getDeliveryPersonName() == name && list2.get(x).getPayment().getPaidStatus() == false)
-                    {
-                        assignedOrders.add(list2.get(x));
-                    }
-                    else if (list2.get(x).getDeliveryPersonName() == name && list2.get(x).getPayment().getPaidStatus() == true)
-                    {
-                        pastOrders.add(list2.get(x));
-                        driverPayments.add(list2.get(x).getPayment());
-                    }
+    private void createGenericDriversAndVehicles() {
+        DeliveryPerson d1 = new DeliveryPerson("driver1", "pw", "John", "d1@swift.com", "222-2222", "NM");
+        DeliveryPerson d2 = new DeliveryPerson("driver2", "pw", "Doe", "d2@swift.com", "333-3333", "NM");
+
+        listDrivers.addAll(Arrays.asList(d1, d2));
+
+        DeliveryVehicle v1 = new DeliveryVehicle("Scooter", "Honda", "Ruckus", "2022", "Red");
+        DeliveryVehicle v2 = new DeliveryVehicle("Car", "Toyota", "Corolla", "2019", "Blue");
+
+        v1.setAssignedDriver(d1);
+        v2.setAssignedDriver(d2);
+
+        listVehicles.addAll(Arrays.asList(v1, v2));
+
+        admin.addDeliveryPerson(d1);
+        admin.addDeliveryPerson(d2);
+        admin.addDeliveryVehicle(v1);
+        admin.addDeliveryVehicle(v2);
+    }
+
+    private void createGenericCoupons() {
+        listCoupons.add(new DiscountCoupon("WELCOME10", 0.10, true));
+        listCoupons.add(new DiscountCoupon("SAVE5", 5.00, true));
+        listCoupons.add(new DiscountCoupon("23XC2444", 3.00, false));
+        listCoupons.add(new DiscountCoupon("5X6734RT", 3.00, true));
+        listCoupons.add(new DiscountCoupon("7YTU8922", 5.00, true));
+        listCoupons.add(new DiscountCoupon("4FLKKM23", 10.00, true));
+    }
+
+    // ===========================
+    // Login
+    // ===========================
+    public void loginMenu() {
+        while (true) {
+            System.out.println("\nLogin as: 1) Admin  2) Customer  3) Delivery  0) Exit");
+            String choice = sc.nextLine().trim();
+            if ("0".equals(choice)) break;
+
+            System.out.print("Username: ");
+            String u = sc.nextLine().trim();
+            System.out.print("Password: ");
+            String p = sc.nextLine().trim();
+
+            Login login = new Login(u, p, listEmployees, listCustomers, listDrivers, admin);
+
+            switch (choice) {
+                case "1" -> {
+                    if (login.authenticateAsAdmin())
+                        new AdminMenu(admin, listCustomers, listRestaurants, listDrivers, listVehicles, listOrders, listPayments, sc).run();
+                    else System.out.println("Invalid admin credentials.");
                 }
-                newList.add(new DeliveryPerson(username, password, name, email, phone, address, driverPayments, assignedOrders, pastOrders));
-            }
-            else if (next == "A")
-            {
-                for (int i = 0; i < 6; i++) {scanner.next();}
-            }
-        }
-        return newList;
-    }
-
-    public Set<Customer> createGenericCustomers()
-    {
-        Set<Customer> newList = new HashSet<>();
-        Scanner scanner = new Scanner(new File ("list_customers.txt"));
-        while (scanner.hasNextLine())
-        {
-            String username = scanner.next();
-            String password = scanner.next();
-            String name = scanner.next().replace("_", " ");
-            String email = scanner.next();
-            String phone = scanner.next();
-            String address = scanner.next().replace("_", " ");
-            String customerID = scanner.next().replace("_", " ");
-            newList.add(new Customer(username, password, name, email, phone, address, customerID));
-        }
-        return newList;
-    }
-
-    /**
-     * This method reads a .txt file
-     * @return
-     */
-    public List<Menu> createGenericMenus()
-    {
-        List<Menu> newList = new ArrayList<>();
-        Scanner scanner = new Scanner(new File ("list_menus.txt"));
-        while(scanner.hasNextLine())
-        {
-            List<String> singleItems = new ArrayList<>();
-            List<String> singlePrices = new ArrayList<>();
-            List<String> comboItems = new ArrayList<>();
-            List<String> comboPrices = new ArrayList<>();
-            String ID = "";
-            while (!scanner.hasNext(""))
-            {
-                String next = scanner.next();
-                if (next == "ID")
-                {
-                    ID = scanner.next();
+                case "2" -> {
+                    Customer cust = login.authenticateAsCustomer();
+                    if (cust != null)
+                        new CustomerMenu(cust, listRestaurants, listCoupons, listDrivers, listOrders, listPayments, admin, sc).run();
+                    else System.out.println("Invalid customer credentials.");
                 }
-                else if (next == "S")
-                {
-                    singleItems.add(scanner.next());
-                    singlePrices.add(scanner.next());
+                case "3" -> {
+                    DeliveryPerson dp = login.authenticateAsDeliveryPerson();
+                    if (dp != null)
+                        new DriverMenu(dp, sc).run();
+                    else System.out.println("Invalid driver credentials.");
                 }
-                else if (next == "C")
-                {
-                    comboItems.add(scanner.next());
-                    comboPrices.add(scanner.next());
-                }
+                default -> System.out.println("Unknown choice.");
             }
-            String[][] singlesList = new String[singleItems.size()][2];
-            String[][] combosList = new String[comboItems.size()][2];
-            for (int x = 0; x < singleItems.size(); x++)
-            {
-                singlesList[x][0] = singleItems.get(x);
-                singlesList[x][1] = singlePrices.get(x);
-            }
-            for (int x = 0; x < comboItems.size(); x++)
-            {
-                combosList[x][0] = comboItems.get(x);
-                combosList[x][1] = comboPrices.get(x);
-            }
-            newList.add(new Menu(ID, singlesList, combosList));
         }
-        return newList;
+        System.out.println("Goodbye!");
     }
-
-    /**
-     * This method reads a .txt file
-     * @return
-     */
-    public Set<Restaurant> createGenericRestaurants()
-    {
-        Set<Restaurant> newList = new HashSet<>();
-        Scanner scanner = new Scanner(new File ("list_restaurants.txt"));
-        while(scanner.hasNextLine())
-        {
-            String name = scanner.next().replace("_", " ");
-            String ID = scanner.next();
-            String address = scanner.next().replace("_", " ");
-            Double rating = scanner.nextDouble();
-            String phone = scanner.next();
-            Menu menu = null;
-            for (Menu m : list4)
-            {
-                if (m.getRestaurantID() == ID) {menu = m;}
-            }
-            newList.add(new Restaurant(ID, name, address, phone, rating, menu));
-        }
-        return newList;
-    }
-
-    public Set<DeliveryVehicle> createGenericVehicles()
-    {
-        Set<DeliveryVehicle> newList = new HashSet<>();
-        Scanner scanner = new Scanner(new File ("list_vehicles.txt"));
-        while(scanner.hasNextLine())
-        {
-            String name = scanner.next().replace("_", " ");
-            String make = scanner.next().replace("_", " ");
-            String model = scanner.next().replace("_", " ");
-            String year = scanner.next().replace("_", " ");
-            String color = scanner.next().replace("_", " ");
-            String condition = scanner.next().replace("_", " ");
-        }
-
-        return newList;
-    }
-
-    /**
-     * This method reads a .txt file
-     * @return
-     */
-    public Set<DiscountCoupon> createGenericCoupons()
-    {
-        Set<DiscountCoupon> newList = new HashSet<>();
-        Scanner scanner = new Scanner(new File ("list_coupons.txt"));
-        while (scanner.hasNextLine())
-        {
-            String code = scanner.next();
-            double amount = scanner.nextDouble();
-            Boolean validity = Boolean.valueOf(scanner.next());
-            newList.add(new DiscountCoupon(code, amount, validity));
-        }
-        return newList;
-    }
-
-    public Set
 }
