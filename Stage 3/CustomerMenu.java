@@ -1,9 +1,3 @@
-<<<<<<< Updated upstream
-import java.util.Set;
-public class CustomerMenu
-{
-    private CustomerMenu(Customer cust, Set<Restaurant> listRestaurants, Set<Order> listOrders) {
-=======
 /**
  * Author: Amadeo Pena
  * Assignment: Project
@@ -34,7 +28,6 @@ public class CustomerMenu {
     }
 
     public void run() {
->>>>>>> Stashed changes
         while (true) {
             System.out.println("\nCustomer Menu - " + cust.getName());
             System.out.println("1) Browse Restaurants");
