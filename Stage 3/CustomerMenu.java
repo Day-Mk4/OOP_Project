@@ -14,6 +14,7 @@ public class CustomerMenu {
     private final Admin admin;
     private final Scanner sc;
 
+    // Contructor for customer menu
     public CustomerMenu(Customer cust, Set<Restaurant> restaurants, Set<DiscountCoupon> coupons,
                         Set<DeliveryPerson> drivers, List<Order> orders,
                         List<Payment> payments, Admin admin, Scanner sc) {
@@ -27,6 +28,7 @@ public class CustomerMenu {
         this.sc = sc;
     }
 
+    // Main loop for the customer menu.
     public void run() {
         while (true) {
             System.out.println("\nCustomer Menu - " + cust.getName());
@@ -48,6 +50,10 @@ public class CustomerMenu {
         }
     }
 
+    /**
+     * Displays a numbered list of restaurants and lets the user pick one.
+     * @return the selected restaurant
+     */
     private Restaurant chooseRestaurant() {
         List<Restaurant> list = new ArrayList<>(restaurants);
         if (list.isEmpty()) return null;
@@ -63,6 +69,7 @@ public class CustomerMenu {
         return null;
     }
 
+    // Handles the full order placement flow
     private void placeOrderFlow() {
         Restaurant selected = chooseRestaurant();
         if (selected == null) return;
@@ -118,6 +125,7 @@ public class CustomerMenu {
         order.displayDetails();
     }
 
+    // Handles paying for the customer's most recent order.
     private void payLastOrderFlow() {
         List<Order> history = cust.getOrderHistory();
         if (history.isEmpty()) {

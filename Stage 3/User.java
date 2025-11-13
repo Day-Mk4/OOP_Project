@@ -22,10 +22,7 @@ public class User {
         this.address = address;
     }
 
-    /**
-     * Gets username
-     * @returm username
-     */
+     // @returm username
     public String getUsername() {
         return username;
     }
@@ -35,10 +32,7 @@ public class User {
         this.username = newUsername;
     }
 
-    /**
-     * Gets password
-     * @returm password
-     */
+     // @returm password
     public String getPassword() {
         return password;
     }
@@ -48,10 +42,7 @@ public class User {
         this.password = newPassword;
     }
 
-    /**
-     * Gets name
-     * @returm name
-     */
+     // @returm name
     public String getName() {
         return name;
     }
@@ -61,10 +52,7 @@ public class User {
         this.name = name;
     }
 
-    /**
-     * Gets email
-     * @returm email
-     */
+     // @returm email
     public String getEmail() {
         return email;
     }
@@ -74,10 +62,7 @@ public class User {
         this.email = email;
     }
 
-    /**
-     * Gets phone
-     * @returm phone
-     */
+     // @returm phone
     public String getPhone() {
         return phone;
     }
@@ -87,10 +72,7 @@ public class User {
         this.phone = phone;
     }
 
-    /**
-     * Gets address
-     * @returm address
-     */
+     // @returm address
     public String getAddress() {
         return address;
     }

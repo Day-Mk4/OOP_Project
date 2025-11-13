@@ -14,39 +14,48 @@ public class DeliveryPerson extends User {
     private DeliveryVehicle deliveryVehicle;
 
 
+    // Constructor for new delivery person
     public DeliveryPerson(String username, String password, String name,
                           String email, String phone, String address) {
         super(username, password, name, email, phone, address);
         this.deliveryPersonID = "DRV-" + UUID.randomUUID().toString().substring(0, 6).toUpperCase();
     }
 
-
+    // @return the driver's unique ID
     public String getID() {
         return deliveryPersonID;
     }
 
+
+    // @return list of active orders
     public List<Order> getAssignedOrders() {
         return new ArrayList<>(assignedOrders);
     }
 
+    // @return list of past orders
     public List<Order> getPastOrders() {
         return new ArrayList<>(pastOrders);
     }
 
+    // @return the assigned delivery vehicle
     public DeliveryVehicle getDeliveryVehicle() {
         return deliveryVehicle;
     }
 
-    public void assignDeliveryVehicle(DeliveryVehicle vehicle) {
-        this.deliveryVehicle = vehicle;
-    }
-
+    /**
+     * Assigns a new order to the driver.
+     * @param order the order to assign
+     */
     public void assignOrder(Order order) {
         if (order != null) {
             assignedOrders.add(order);
         }
     }
     
+    /**
+     * Marks an assigned order as completed.
+     * @param orderID the ID of the order to complete
+     */
     public void completeOrder(String orderID) {
         Order found = null;
         for (Order o : assignedOrders) {
@@ -63,12 +72,14 @@ public class DeliveryPerson extends User {
         }
     }
 
+    // Displays all currently assigned orders.
     public void displayAssignedOrders() {
         for (Order o : assignedOrders) {
             o.displayDetails();
         }
     }
 
+    // Displays all completed orders.
     public void displayPastOrders() {
         for (Order o : pastOrders) {
             o.displayDetails();

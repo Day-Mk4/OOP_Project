@@ -25,42 +25,30 @@ public class Restaurant {
         this.rating = rating;
     }
 
-    /** 
-     * Gets restaurant name
-     * @return the restaurant name 
-     */
+     // @return the restaurant name 
     public String getName() {
         return restaurantName;
     }
 
-    /** 
-     * Gets restaurant id
-     * @return the restaurant id 
-     */
+
+     // @return the restaurant id 
     public String getID() {
         return restaurantID;
     }
 
-    /** 
-     * Gets restaurant address
-     * @return the restaurant address 
-     */
+     // @return the restaurant address 
     public String getAddress() {
         return address;
     }
 
-    /** 
-     * Gets restaurant rating
-     * @return the restaurant rating 
-     */
+
+     // @return the restaurant rating 
     public double getRating() {
         return rating;
     }
 
-    /** 
-     * Gets restaurant phone
-     * @return the restaurant phone 
-     */
+
+     // @return the restaurant phone 
     public String getPhone() {
         return phone;
     }
@@ -98,10 +86,7 @@ public class Restaurant {
         }
     }
 
-    /** 
-     * Gets menu
-     * @return the menu
-     */
+     // @return the menu
     public Menu getMenu() {
         return menu;
     }

@@ -8,11 +8,13 @@ public class DriverMenu {
     private final DeliveryPerson dp;
     private final Scanner sc;
 
+    // Constructor for driver menu
     public DriverMenu(DeliveryPerson dp, Scanner sc) {
         this.dp = dp;
         this.sc = sc;
     }
 
+    // Runs the driver menu loop
     public void run() {
         while (true) {
             System.out.println("\nDelivery Menu - " + dp.getName());
