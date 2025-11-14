@@ -53,7 +53,7 @@ public class Initializer {
         Restaurant r4 = new Restaurant("R-104", "Olive Garden", "113 W Ramada St., ABQ", "(505)112-3345", 3.4);
         Restaurant r5 = new Restaurant("R-105", "Saheel's Authentic Indian Food", "678 Wedding St., ABQ", "(505)698-0034", 4.6);
 
-        Menu m1 = new Menu(r1.getID());
+        Menu m1 = new Menu(r1);
         m1.addSingleItem("Soda", 3.00);
         m1.addSingleItem("Fried Rice", 3.00);
         m1.addSingleItem("3 Eggrolls", 3.00);
@@ -63,7 +63,7 @@ public class Initializer {
         m1.addSingleItem("Kung Pao Chicken", 15.00);
         r1.setMenu(m1);
 
-        Menu m2 = new Menu(r2.getID());
+        Menu m2 = new Menu(r2);
         m2.addSingleItem("Soda", 3.00);
         m2.addSingleItem("Sweet Potato Fries", 3.00);
         m2.addSingleItem("Coleslaw", 3.00);
@@ -73,13 +73,13 @@ public class Initializer {
         m2.addSingleItem("Chicken Fried Steak", 15.00);
         r2.setMenu(m2);
 
-        Menu m3 = new Menu(r3.getID());
+        Menu m3 = new Menu(r3);
         m3.addSingleItem("Fries + Drink", 5.99);
         m3.addSingleItem("Burger", 9.99);
         m3.addComboItem("Combo", 13.99);
         r3.setMenu(m3);
 
-        Menu m4 = new Menu(r4.getID());
+        Menu m4 = new Menu(r4);
         m4.addSingleItem("Drink + side", 7.00);
         m4.addSingleItem("Spaghetti", 8.00);
         m4.addComboItem("Steak", 15.00);
@@ -149,6 +149,7 @@ public class Initializer {
                             listRestaurants,
                             listDrivers,
                             listVehicles,
+                            listCoupons, 
                             listOrders,
                             listPayments,
                             sc

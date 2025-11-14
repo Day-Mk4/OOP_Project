@@ -1,5 +1,5 @@
 /**
- * Author: Lazo McCarroll
+ * Author: 
  * Assignment: Project
  */
 import java.util.HashMap;
@@ -7,123 +7,75 @@ import java.util.Map;
 
 public class Menu {
 
-    // Instance variables
-    private final String restaurantID;
-    private final MenuManager mm = new MenuManager();;
-    private Map<String, Double> singles = new HashMap<>();
-    private Map<String, Double> combos = new HashMap<>();
+    private final Restaurant restaurant;
+    private final Map<String, Double> singles = new HashMap<>();
+    private final Map<String, Double> combos = new HashMap<>();
 
-    /**
-     * Thos costructor initializes the instance variable restaurantID.
-     * @param id
-     */
-    public Menu(String id) {
-        this.restaurantID = id;
+    // Constructor to create a menu for the given restaurant
+    public Menu(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
-    /**
-     * This method adds a single item to the a la carte menu.
-     * @param name
-     * @param price
-     */
+    // @return the restaurant
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    // Adds a new single item.
     public void addSingleItem(String name, double price) {
         singles.put(name, price);
     }
 
-    /**
-     * This method updates the price of an existing a la carte menu item.
-     * @param name
-     * @param price
-     */
+    // Updates a single item.
     public void updateSingleItem(String name, double price) {
         singles.put(name, price);
     }
 
-    /**
-     * This method removes an a la carte menu item.
-     * @param name
-     */
+    // Removes a single item.
     public void removeSingleItem(String name) {
         singles.remove(name);
     }
 
-    /**
-     * This method adds a combo item to the combo menu.
-     * @param name
-     * @param price
-     */
+    // Adds a combo item.
     public void addComboItem(String name, double price) {
         combos.put(name, price);
     }
 
-    /**
-     * This method updates the price of an existing combo menu item.
-     * @param name
-     * @param price
-     */
+    // Updates a combo item.
     public void updateComboItem(String name, double price) {
         combos.put(name, price);
     }
 
-    /**
-     * This method removes a combo menu item.
-     * @param name
-     */
+    // Removes a combo item.
     public void removeComboItem(String name) {
         combos.remove(name);
     }
 
-    /**
-     * This method returns the a la carte menu items and their prices.
-     * @return
-     */
+    // @return singles
     public Map<String, Double> getSingles() {
         return singles;
     }
 
-    /**
-     * This method returns the combo menu items and their prices.
-     * @return
-     */
+    // @return combos
     public Map<String, Double> getCombos() {
         return combos;
     }
 
-    /**
-     * This method displays the a la carte menu items and their prices.
-     */
+    // Prints all single items.
     public void displaySinglesMenu() {
         System.out.println("-- Singles --");
         singles.forEach((k, v) -> System.out.println("  " + k + " .... $" + v));
     }
 
-    /**
-     * This method displays the combo menu items and their prices.
-     */
+    // Prints all combo items.
     public void displayCombosMenu() {
         System.out.println("-- Combos --");
         combos.forEach((k, v) -> System.out.println("  " + k + " .... $" + v));
     }
 
-    /**
-     * This method displays the complete menu with a la carte and combo items.
-     */
+    // Prints all complete items.
     public void displayCompleteMenu() {
         displaySinglesMenu();
         displayCombosMenu();
-    }
-
-    /**
-     * This method calls the MenuManager method createSingles() to populate the a la carte menu.
-     */
-    public void createSingles() {
-        singles = mm.createSingles();
-    }
-
-    /**
-     * This method calls the MenuManager method createCombos() to populate the combo menu.
-     */
-    public void createCombos() {
-        combos = mm.createCombos();
     }
 }
