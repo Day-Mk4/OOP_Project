@@ -149,7 +149,6 @@ public class Initializer {
                             listRestaurants,
                             listDrivers,
                             listVehicles,
-                            listCoupons, 
                             listOrders,
                             listPayments,
                             sc
