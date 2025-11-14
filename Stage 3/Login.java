@@ -13,7 +13,7 @@ public class Login {
     private final Set<DeliveryPerson> listDrivers;
     private final Admin admin;
 
-    
+    // Constuctor for login
     public Login(String username, String password,
                  Set<Employee> listEmployees,
                  Set<Customer> listCustomers,
@@ -27,12 +27,20 @@ public class Login {
         this.admin = admin;
     }
 
+    /**
+     * Checks whether the entered credentials match the Admin user.
+     * @return true if admin login is successful
+     */
     public boolean authenticateAsAdmin() {
         return admin != null
                 && admin.getUsername().equals(username)
                 && admin.getPassword().equals(password);
     }
 
+    /**
+     * Checks credentials against all customers.
+     * @return the matching Customer
+     */
     public Customer authenticateAsCustomer() {
         for (Customer c : listCustomers) {
             if (c.getUsername().equals(username)
@@ -43,6 +51,10 @@ public class Login {
         return null;
     }
 
+    /**
+     * Checks credentials against all delivery drivers.
+     * @return the matching DeliveryPerson
+     */
     public DeliveryPerson authenticateAsDeliveryPerson() {
         for (DeliveryPerson d : listDrivers) {
             if (d.getUsername().equals(username)
