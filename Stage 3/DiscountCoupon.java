@@ -4,8 +4,8 @@
  */
 public class DiscountCoupon {
 
-    private final String code;
-    private final double discountAmount; 
+    private String code;
+    private double discountAmount; 
     private boolean validity;
 
 

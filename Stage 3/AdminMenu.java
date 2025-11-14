@@ -101,7 +101,10 @@ public class AdminMenu {
         System.out.print("Rating: ");
         double rt = Double.parseDouble(sc.nextLine().trim());
         Restaurant r = new Restaurant(id, rn, adr, ph, rt);
-        r.setMenu(new Menu(r));
+        Menu mu = new Menu(id);
+        mu.createSingles();
+        mu.createCombos();
+        r.setMenu(mu);
         restaurants.add(r);
         admin.addRestaurant(r);
         System.out.println("Added.");
