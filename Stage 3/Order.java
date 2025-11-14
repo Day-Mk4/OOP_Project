@@ -18,7 +18,7 @@ public class Order {
     private Payment payment;
     private final Set<DiscountCoupon> appliedCoupons;
 
-
+    // Constructor to create a new order with generated ID and calculates price.
     public Order(String[][] items, Restaurant restaurant, Customer customer,
                  DeliveryPerson deliveryPerson, Set<DiscountCoupon> coupons) {
 
@@ -37,19 +37,22 @@ public class Order {
         this.price = calculatePrice();
     }
 
-
+    //@return the unique order ID
     public String getOrderID() {
         return orderID;
     }
 
+    // Set OrderID
     public void setOrderID(String id) {
    
     }
 
+    // @return a copy of the items in the order 
     public List<String[]> getOrderItems() {
         return new ArrayList<>(orderItems);
     }
 
+    // Removes all matching items and recalculates price.
     public void removeOrderItems(String itemName) {
     for (int i = 0; i < orderItems.size(); i++) {
         if (orderItems.get(i)[0].equalsIgnoreCase(itemName)) {
@@ -61,39 +64,47 @@ public class Order {
     }
 
 
+    // @return the price
     public double getPrice() {
         return price;
     }
 
+    // @return the restaurant
     public Restaurant getRestaurant() {
         return restaurant;
     }
 
+    // @return the customer id
     public String getCustomer() {
         return customer.getCustomerID();
     }
 
+    // @return the customer
     public Customer getCustomerObj() {
         return customer;
     }
 
+    // @return the delivery person
     public DeliveryPerson getDeliveryPerson() {
         return deliveryPerson;
     }
 
+    // Sets delivery person
     public void setDeliveryPerson(DeliveryPerson dp) {
         this.deliveryPerson = dp;
     }
 
+    // @return the payment
     public Payment getPayment() {
         return payment;
     }
 
+    // Set payment
     public void setPayment(Payment payment) {
         this.payment = payment;
     }
 
-
+    // Calculates total price with applied coupons.
     public double calculatePrice() {
         double sum = 0.0;
 
@@ -113,6 +124,7 @@ public class Order {
         return Math.round(discounted * 100.0) / 100.0;
     }
 
+    // Prints all order details.
     public void displayDetails() {
         System.out.println("Order " + orderID + " @ " + restaurant.getName() + " for " + customer.getName());
 

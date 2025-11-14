@@ -7,12 +7,12 @@ import java.util.List;
 
 public class Restaurant {
 
-    private final String restaurantID;
-    private final String restaurantName;
-    private final String address;
-    private final double rating;
-    private final String phone;
-    private final List<Order> orders = new ArrayList<>();
+    private String restaurantID;
+    private String restaurantName;
+    private String address;
+    private double rating;
+    private String phone;
+    private List<Order> orders = new ArrayList<>();
     private Menu menu;
 
 
@@ -25,30 +25,30 @@ public class Restaurant {
         this.rating = rating;
     }
 
-     // @return the restaurant name 
+    // @return the restaurant name 
     public String getName() {
         return restaurantName;
     }
 
 
-     // @return the restaurant id 
+    // @return the restaurant id 
     public String getID() {
         return restaurantID;
     }
 
-     // @return the restaurant address 
+    // @return the restaurant address 
     public String getAddress() {
         return address;
     }
 
 
-     // @return the restaurant rating 
+    // @return the restaurant rating 
     public double getRating() {
         return rating;
     }
 
 
-     // @return the restaurant phone 
+    // @return the restaurant phone 
     public String getPhone() {
         return phone;
     }
@@ -95,6 +95,27 @@ public class Restaurant {
     public void setMenu(Menu menu) {
         this.menu = menu;
     }
+    
+    // Sets Name
+    public void setName(String name) {
+        this.restaurantName  = name;
+    }
+
+    // Sets Address
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    // Sets Phone
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    // Sets Rating
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
 
     /**
      * Updates a menu item's price.

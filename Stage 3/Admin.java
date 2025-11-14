@@ -16,11 +16,12 @@ public class Admin extends User {
     private final List<Order> listOrders = new ArrayList<>();
     private final List<Payment> listPayments = new ArrayList<>();
 
+    // Constructor to create a new admin user.
     public Admin(String username, String password, String name, String email, String phone, String address) {
         super(username, password, name, email, phone, address);
     }
 
-
+//  -------------------- Customer Management --------------------
     public void addCustomer(Customer c) {
         managedCustomers.add(c);
     }
@@ -43,6 +44,7 @@ public class Admin extends User {
         return null;
     }
 
+//  -------------------- Restaurant Management --------------------
     public void addRestaurant(Restaurant r) {
         managedRestaurants.add(r);
     }
@@ -58,6 +60,7 @@ public class Admin extends User {
         managedRestaurants.removeIf(r -> r.getID().equals(restaurantID));
     }
 
+//  -------------------- Delivery Person Management --------------------
     public void addDeliveryPerson(DeliveryPerson d) {
         managedDeliveryPeople.add(d);
     }
@@ -74,6 +77,7 @@ public class Admin extends User {
         managedDeliveryPeople.removeIf(d -> d.getID().equals(deliveryPersonID));
     }
 
+//  -------------------- Vehicle Management --------------------
     public void addDeliveryVehicle(DeliveryVehicle v) {
         managedVehicles.add(v);
     }
@@ -89,7 +93,8 @@ public class Admin extends User {
     public void removeDeliveryVehicle(String vehicleName) {
         managedVehicles.removeIf(v -> v.getName().equalsIgnoreCase(vehicleName));
     }
-
+    
+//  -------------------- Order & Payment Tracking --------------------
     public void recordOrder(Order o) {
         if (o != null) listOrders.add(o);
     }
@@ -119,18 +124,22 @@ public class Admin extends User {
         }
     }
 
+    // @return managed customers
     public Set<Customer> customers() {
         return managedCustomers;
     }
 
+    // @return managed restaurants
     public Set<Restaurant> restaurants() {
         return managedRestaurants;
     }
 
+    // @return managed delivery people
     public Set<DeliveryPerson> deliveryPeople() {
         return managedDeliveryPeople;
     }
 
+    // @return managed delivery vehicle
     public Set<DeliveryVehicle> vehicles() {
         return managedVehicles;
     }

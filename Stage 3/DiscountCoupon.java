@@ -4,17 +4,16 @@
  */
 public class DiscountCoupon {
 
-    private final String code;
-    private final double discountAmount; 
+    private String code;
+    private double discountAmount; 
     private boolean validity;
 
-    // Contructor for discount coupon
+    // Constructor
     public DiscountCoupon(String code, double discountAmount, boolean isValid) {
         this.code = code;
         this.discountAmount = discountAmount;
         this.validity = isValid;
     }
-
 
     /**
      * Applies the discount to a given price.
@@ -22,17 +21,19 @@ public class DiscountCoupon {
      * @return the discounted price (rounded to 2 decimals)
      */
     public double applyDiscount(double price) {
-    if (!isValid()) {
-        return price;
-    }
-    double newPrice;
-    
-    if (discountAmount < 1.0) {
-        newPrice = price * (1.0 - discountAmount);
-    } else {
-        newPrice = Math.max(0.0, price - discountAmount);
-    }
-    return Math.round(newPrice * 100.0) / 100.0;
+        if (!isValid()) {
+            return price;
+        }
+
+        double newPrice;
+
+        if (discountAmount < 1.0) {
+            newPrice = price * (1.0 - discountAmount);
+        } else {
+            newPrice = Math.max(0.0, price - discountAmount);
+        }
+
+        return Math.round(newPrice * 100.0) / 100.0;
     }
 
     // @return true if the coupon is valid 
@@ -50,12 +51,27 @@ public class DiscountCoupon {
         return discountAmount;
     }
 
+    // @return the value 
+    public double getValue() {
+        return discountAmount;
+    }
+
+    // Sets Value
+    public void setValue(double value) {
+        this.discountAmount = value;
+    }
+
     // @return the coupon validity
     public boolean getValidity() {
         return validity;
     }
 
-    // Invalidates the coupon so it cannot be used again.
+    // ALIAS: AdminMenu expects setValid()
+    public void setValid(boolean valid) {
+        this.validity = valid;
+    }
+
+    // Invalidates the coupon
     public void invalidate() {
         this.validity = false;
     }
