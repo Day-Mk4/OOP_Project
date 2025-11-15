@@ -7,18 +7,18 @@ import java.util.Map;
 
 public class Menu {
 
-    private final Restaurant restaurant;
+    private final String restaurantID;
     private final Map<String, Double> singles = new HashMap<>();
     private final Map<String, Double> combos = new HashMap<>();
 
     // Constructor to create a menu for the given restaurant
-    public Menu(Restaurant restaurant) {
-        this.restaurant = restaurant;
+    public Menu(String restaurantID) {
+        this.restaurantID = restaurantID;
     }
 
     // @return the restaurant
-    public Restaurant getRestaurant() {
-        return restaurant;
+    public String getRestaurantID() {
+        return restaurantID;
     }
 
     // Adds a new single item.

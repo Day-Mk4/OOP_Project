@@ -46,73 +46,29 @@ public class AdminMenu {
     public void run() {
         while (true) {
             System.out.println("\n=== Admin Menu ===");
-            System.out.println("1) List Customers");
-            System.out.println("2) Add Customer");
-            System.out.println("3) Update Customer");
-            System.out.println("4) Remove Customer");
-
-            System.out.println("5) List Restaurants");
-            System.out.println("6) Add Restaurant");
-            System.out.println("7) Update Restaurant");
-            System.out.println("8) Remove Restaurant");
-
-            System.out.println("9) List Drivers");
-            System.out.println("10) Add Driver");
-            System.out.println("11) Update Driver");
-            System.out.println("12) Remove Driver");
-
-            System.out.println("13) List Vehicles");
-            System.out.println("14) Add Vehicle");
-            System.out.println("15) Update Vehicle");
-            System.out.println("16) Remove Vehicle");
-
-            System.out.println("17) Manage Menus");
-
-            System.out.println("18) List Coupons");
-            System.out.println("19) Add Coupon");
-            System.out.println("20) Update Coupon");
-            System.out.println("21) Remove Coupon");
-
-            System.out.println("22) View Orders Report");
-            System.out.println("23) View Payments Report");
+            System.out.println("1) Customer Sub Menu");
+            System.out.println("2) Restaurant Sub Menu");
+            System.out.println("3) Driver Sub Menu");
+            System.out.println("4) Vehicle Sub Menu");
+            System.out.println("5) Manage Menus");
+            System.out.println("6) Coupon Sub Menu");
+            System.out.println("7) View Orders Report");
+            System.out.println("8) View Payments Report");
 
             System.out.println("0) Back");
 
             String ch = sc.nextLine().trim();
 
             switch (ch) {
-                case "1" -> listCustomers();
-                case "2" -> addCustomer();
-                case "3" -> updateCustomer();
-                case "4" -> removeCustomer();
-
-                case "5" -> listRestaurants();
-                case "6" -> addRestaurant();
-                case "7" -> updateRestaurant();
-                case "8" -> removeRestaurant();
-
-                case "9" -> listDrivers();
-                case "10" -> addDriver();
-                case "11" -> updateDriver();
-                case "12" -> removeDriver();
-
-                case "13" -> listVehicles();
-                case "14" -> addVehicle();
-                case "15" -> updateVehicle();
-                case "16" -> removeVehicle();
-
-                case "17" -> manageMenus();
-
-                case "18" -> listCoupons();
-                case "19" -> addCoupon();
-                case "20" -> updateCoupon();
-                case "21" -> removeCoupon();
-
-                case "22" -> viewOrdersReport();
-                case "23" -> viewPaymentsReport();
-
+                case "1" -> custSubMenu();
+                case "2" -> restSubMenu();
+                case "3" -> driverSubMenu();
+                case "4" -> vehicleSubMenu();
+                case "5" -> manageMenus();
+                case "6" -> couponSubMenu();
+                case "7" -> viewOrdersReport();
+                case "8" -> viewPaymentsReport();
                 case "0" -> { return; }
-
                 default -> System.out.println("Invalid option.");
             }
         }
@@ -435,8 +391,13 @@ public class AdminMenu {
             return;
         }
 
+        String rName = restaurants.stream()
+                .filter(r -> r.getID().equals(id))
+                .map(Restaurant::getName)
+                .findFirst().orElse("Unknown");
+
         while (true) {
-            System.out.println("\n=== Manage Menu for " + menu.getRestaurant().getName() + " ===");
+            System.out.println("\n=== Manage Menu for " + rName + " ===");
             System.out.println("1) Add Single Item");
             System.out.println("2) Add Combo Item");
             System.out.println("3) Update Single Item");
@@ -633,5 +594,119 @@ public class AdminMenu {
 
     private void clearBuffer() {
         if (sc.hasNextLine()) sc.nextLine();
+    }
+
+    // ============================================================
+    // SUBMENUS
+    // ============================================================
+
+    private void custSubMenu() {
+        while (true) {
+            System.out.println("\n=== Admin: Customer Sub Menu ===");
+            System.out.println("1) List Customers");
+            System.out.println("2) Add Customer");
+            System.out.println("3) Update Customer");
+            System.out.println("4) Remove Customer");
+            System.out.println("0) Back");
+
+            String ch = sc.nextLine().trim();
+
+            switch (ch) {
+                case "1" -> listCustomers();
+                case "2" -> addCustomer();
+                case "3" -> updateCustomer();
+                case "4" -> removeCustomer();
+                case "0" -> { return; }
+                default -> System.out.println("Invalid option.");
+            }
+        }
+    }
+
+    private void restSubMenu() {
+        while (true) {
+            System.out.println("\n=== Admin: Restaurant Sub Menu ===");
+            System.out.println("1) List Restaurants");
+            System.out.println("2) Add Restaurant");
+            System.out.println("3) Update Restaurant");
+            System.out.println("4) Remove Restaurant");
+            System.out.println("0) Back");
+
+            String ch = sc.nextLine().trim();
+
+            switch (ch) {
+                case "1" -> listRestaurants();
+                case "2" -> addRestaurant();
+                case "3" -> updateRestaurant();
+                case "4" -> removeRestaurant();
+                case "0" -> { return; }
+                default -> System.out.println("Invalid option.");
+            }
+        }
+    }
+
+    private void driverSubMenu() {
+        while (true) {
+            System.out.println("\n=== Admin: Driver Sub Menu ===");
+            System.out.println("1) List Drivers");
+            System.out.println("2) Add Driver");
+            System.out.println("3) Update Driver");
+            System.out.println("4) Remove Driver");
+            System.out.println("0) Back");
+
+            String ch = sc.nextLine().trim();
+
+            switch (ch) {
+                case "1" -> listDrivers();
+                case "2" -> addDriver();
+                case "3" -> updateDriver();
+                case "4" -> removeDriver();
+                case "0" -> { return; }
+                default -> System.out.println("Invalid option.");
+            }
+        }
+    }
+
+    private void vehicleSubMenu() {
+        while (true) {
+            System.out.println("\n=== Admin: Vehicle Sub Menu ===");
+            System.out.println("1) List Vehicles");
+            System.out.println("2) Add Vehicle");
+            System.out.println("3) Update Vehicle");
+            System.out.println("4) Remove Vehicle");
+            System.out.println("0) Back");
+
+            String ch = sc.nextLine().trim();
+
+            switch (ch) {
+                case "1" -> listVehicles();
+                case "2" -> addVehicle();
+                case "3" -> updateVehicle();
+                case "4" -> removeVehicle();
+                case "0" -> { return; }
+                default -> System.out.println("Invalid option.");
+            }
+        }
+    }
+
+    private void couponSubMenu() {
+        while (true) {
+            System.out.println("\n=== Admin: Coupon Sub Menu ===");
+            System.out.println("1) List Coupons");
+            System.out.println("2) Add Coupon");
+            System.out.println("3) Update Coupon");
+            System.out.println("4) Remove Coupon");
+            System.out.println("0) Back");
+
+            String ch = sc.nextLine().trim();
+
+            switch (ch) {
+                case "1" -> listCoupons();
+                case "2" -> addCoupon();
+                case "3" -> updateCoupon();
+                case "4" -> removeCoupon();
+                case "0" -> { return; }
+                default -> System.out.println("Invalid option.");
+            }
+        }
     }
 }

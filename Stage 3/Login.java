@@ -8,20 +8,17 @@ public class Login {
 
     private final String username;
     private final String password;
-    private final Set<Employee> listEmployees;
     private final Set<Customer> listCustomers;
     private final Set<DeliveryPerson> listDrivers;
     private final Admin admin;
 
     // Constuctor for login
     public Login(String username, String password,
-                 Set<Employee> listEmployees,
                  Set<Customer> listCustomers,
                  Set<DeliveryPerson> listDrivers,
                  Admin admin) {
         this.username = username;
         this.password = password;
-        this.listEmployees = listEmployees;
         this.listCustomers = listCustomers;
         this.listDrivers = listDrivers;
         this.admin = admin;
