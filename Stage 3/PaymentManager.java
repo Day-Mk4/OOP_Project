@@ -1,5 +1,5 @@
 /**
- * Author: 
+ * Author: Lazo McCarroll
  * Assignment: Project
  */
 public class PaymentManager {
@@ -7,10 +7,10 @@ public class PaymentManager {
     /**
      * Processes a payment using the given method.
      * Marks the payment as paid if valid details are provided.
-     * @param payment the payment to process
-     * @param method the payment method 
-     * @param details payment verification info
-     * @return true if processed successfully
+     * @param payment
+     * @param method
+     * @param details
+     * @return
      */
     public boolean process(Payment payment, String method, String details) {
         if (payment == null) {

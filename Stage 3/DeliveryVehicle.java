@@ -1,9 +1,10 @@
 /**
- * Author:
+ * Author: Lazo McCarroll
  * Assignment: Project
  */
 public class DeliveryVehicle {
 
+    // Instance variables
     private String name;
     private String make;
     private String model;
@@ -12,7 +13,14 @@ public class DeliveryVehicle {
     private String condition;
     private DeliveryPerson assignedDriver;
 
-    // Constructor to create a new vehicle with default condition "Good".
+    /**
+     * This constructor initializes the instance variables.
+     * @param name
+     * @param make
+     * @param model
+     * @param year
+     * @param color
+     */
     public DeliveryVehicle(String name, String make, String model, String year, String color) {
         this.name = name;
         this.make = make;
@@ -22,79 +30,122 @@ public class DeliveryVehicle {
         this.condition = "Good";
     }
 
-    // @return name
+    /**
+     * This method returns the name.
+     */
     public String getName() {
         return name;
     }
 
-    // Sets name
+    /**
+     * This method sets the name.
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
-    // @return make
+    /**
+     * This method returns the make.
+     * @return
+     */
     public String getMake() {
         return make;
     }
 
-    // Sets make
+    /**
+     * This method sets the make.
+     * @param make
+     */
     public void setMake(String make) {
         this.make = make;
     }
 
-    // @return model
+    /**
+     * This method returns the model.
+     * @return
+     */
     public String getModel() {
         return model;
     }
 
-    // Sets model
+    /**
+     * This method sets the model.
+     * @param model
+     */
     public void setModel(String model) {
         this.model = model;
     }
 
-    // @return year
+    /**
+     * This method returns the year.
+     * @return
+     */
     public String getYear() {
         return year;
     }
 
-    // Sets year
+    /**
+     * This method sets the year.
+     * @param year
+     */
     public void setYear(String year) {
         this.year = year;
     }
 
-    // @return color
+    /**
+     * This method returns the color.
+     * @return
+     */
     public String getColor() {
         return color;
     }
 
-    // Sets color
+    /**
+     * This method sets the color.
+     * @param color
+     */
     public void setColor(String color) {
         this.color = color;
     }
 
-    // @return condition
+    /**
+     * This method returns the condition.
+     * @return
+     */
     public String getCondition() {
         return condition;
     }
 
-    // Sets condition
+    /**
+     * This method sets the condition.
+     * @param condition
+     */
     public void setCondition(String condition) {
         if (condition != null && !condition.trim().isEmpty()) {
             this.condition = condition;
         }
     }
 
-    // @return assigned driver
+    /**
+     * This method returns the assigned driver.
+     * @return
+     */
     public DeliveryPerson getAssignedDriver() {
         return assignedDriver;
     }
 
-    // Sets assigned driver
+    /**
+     * This method sets the assigned driver.
+     * @param assignedDriver
+     */
     public void setAssignedDriver(DeliveryPerson assignedDriver) {
         this.assignedDriver = assignedDriver;
     }
 
-    // Prints all vehicle information.
+    /**
+     * This method displays the vehicle details.
+     */
     public void displayDetails() {
         System.out.println(
                 "Vehicle { " +

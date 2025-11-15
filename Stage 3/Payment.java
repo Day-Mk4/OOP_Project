@@ -7,6 +7,7 @@ import java.util.UUID;
 
 public class Payment {
 
+    // Instance variables
     private final String paymentID;
     private double price;
     private final DeliveryPerson deliveryPerson;
@@ -15,7 +16,14 @@ public class Payment {
     private boolean paidStatus;
     private final Set<DiscountCoupon> appliedCoupons;
 
-    // Constructor to creates a new payment record with a generated ID.
+    /**
+     * This constructor initializes the instance variables.
+     * @param price
+     * @param deliveryPerson
+     * @param order
+     * @param customer
+     * @param appliedCoupons
+     */
     public Payment(double price, DeliveryPerson deliveryPerson, Order order,
                    Customer customer, Set<DiscountCoupon> appliedCoupons) {
         this.paymentID = "PAY-" + UUID.randomUUID().toString().substring(0, 6).toUpperCase();
@@ -27,52 +35,73 @@ public class Payment {
         this.appliedCoupons = appliedCoupons;
     }
 
-    // @return unique payment ID
+    /**
+     * This method returns the payment ID.
+     * @return
+     */
     public String getPaymentID() {
         return paymentID;
     }
 
-    // Set PaymentID
-    public void setPaymentID(String paymentID) {
-        
-    }
-
-    // @return payment amount
+    /**
+     * This method returns the price.
+     * @return
+     */
     public double getPrice() {
         return price;
     }
 
-    // Updates the payment amount.
+    /**
+     * This method updates the price.
+     * @param newPrice
+     */
     public void updatePrice(double newPrice) {
         this.price = newPrice;
     }
 
-    // @return delivery person.
+    /**
+     * This method returns the delivery person.
+     * @return
+     */
     public DeliveryPerson getDeliveryPerson() {
         return deliveryPerson;
     }
 
-    // @return order
+    /**
+     * This method returns the order.
+     * @return
+     */
     public Order getOrder() {
         return order;
     }
 
-    // @return customer
+    /**
+     * This method returns the customer.
+     * @return
+     */
     public Customer getCustomer() {
         return customer;
     }
 
-    // @return payment status
+    /**
+     * This method returns the payment status.
+     * @return
+     */
     public boolean getPaidStatus() {
         return paidStatus;
     }
 
-    // Updates the paid/unpaid status. 
+    /**
+     * This method updates the payment status.
+     * @param newPaidStatus
+     */
     public void updatePaidStatus(boolean newPaidStatus) {
         this.paidStatus = newPaidStatus;
     }
 
-    // Prints a summary of payment details.
+    /**
+     * This method displays the payment details.
+     */
     public void displayDetails() {
         System.out.println(
             "Payment " + paymentID +
