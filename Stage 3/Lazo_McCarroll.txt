@@ -1,0 +1,15 @@
+I created/worked on the following classes:
+	
+	Order
+	Payment
+	Menu
+	Admin
+	Delivery Vehicle
+	PaymentManager
+	MenuManager
+
+We both worked on the following classes:
+	
+	Initializer
+	AdminMenu
+	User
