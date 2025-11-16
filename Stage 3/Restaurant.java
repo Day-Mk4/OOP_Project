@@ -132,9 +132,9 @@ public class Restaurant {
     public void displayDetails() {
         System.out.println(
             "Restaurant [" + restaurantID + "] " + restaurantName +
-            ", Phone=" + phone +
-            ", Rating=" + rating +
-            ", Address=" + address
+            ", Phone: " + phone +
+            ", Rating: " + rating +
+            ", Address: " + address
         );
     }
 }
