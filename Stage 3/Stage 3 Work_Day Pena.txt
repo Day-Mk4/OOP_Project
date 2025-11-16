@@ -1,0 +1,5 @@
+Day Pena – Stage 3
+
+Classes: User, Login, DeliveryPerson, Customer, DiscountCoupon, Restaurant, CustomerMenu
+
+I was responsible for implementing my classes from the UML diagram into code that handle User, Login, DeliveryPerson, Customer, DiscountCoupon, Restaurant, DriverMenu, and CustomerMenu functions. We were both responsible for the Initializer, AdminMenu, and DriverMenu class.
