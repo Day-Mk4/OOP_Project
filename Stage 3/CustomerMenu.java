@@ -113,7 +113,8 @@ public class CustomerMenu {
 
         DeliveryPerson dp = drivers.iterator().next();
         String[][] arr = items.toArray(new String[0][0]);
-        Order order = new Order(arr, selected, cust, dp, used);
+        String orderID = "00" + (orders.size() + 1);
+        Order order = new Order(orderID, arr, selected.getName(), cust.getName(), dp.getID(), used);
 
         selected.addOrder(order);
         orders.add(order);
@@ -138,7 +139,8 @@ public class CustomerMenu {
             return;
         }
 
-        Payment pay = new Payment(last.getPrice(), last.getDeliveryPerson(), last, cust, new HashSet<>());
+        String paymentID = "00" + (payments.size() + 1);
+        Payment pay = new Payment(paymentID, last.getPrice(), last.getDeliveryPerson(), last.getOrderID(), cust.getName(), true);
         last.setPayment(pay);
         payments.add(pay);
         admin.recordPayment(pay);

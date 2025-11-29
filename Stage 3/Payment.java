@@ -2,19 +2,16 @@
  * Author: 
  * Assignment: Project
  */
-import java.util.Set;
-import java.util.UUID;
 
 public class Payment {
 
     // Instance variables
     private final String paymentID;
     private double price;
-    private final DeliveryPerson deliveryPerson;
-    private final Order order;
-    private final Customer customer;
+    private final String deliveryPersonName;
+    private final String orderID;
+    private final String customerName;
     private boolean paidStatus;
-    private final Set<DiscountCoupon> appliedCoupons;
 
     /**
      * This constructor initializes the instance variables.
@@ -24,15 +21,14 @@ public class Payment {
      * @param customer
      * @param appliedCoupons
      */
-    public Payment(double price, DeliveryPerson deliveryPerson, Order order,
-                   Customer customer, Set<DiscountCoupon> appliedCoupons) {
-        this.paymentID = "PAY-" + UUID.randomUUID().toString().substring(0, 6).toUpperCase();
+    public Payment(String paymentID, double price, String deliveryPerson, String orderID,
+                   String customer, boolean status) {
+        this.paymentID = paymentID;
         this.price = price;
-        this.deliveryPerson = deliveryPerson;
-        this.order = order;
-        this.customer = customer;
-        this.paidStatus = false;
-        this.appliedCoupons = appliedCoupons;
+        this.deliveryPersonName = deliveryPerson;
+        this.orderID = "ORD-"+orderID;
+        this.customerName = customer;
+        this.paidStatus = status;
     }
 
     /**
@@ -63,24 +59,24 @@ public class Payment {
      * This method returns the delivery person.
      * @return
      */
-    public DeliveryPerson getDeliveryPerson() {
-        return deliveryPerson;
+    public String getDeliveryPerson() {
+        return deliveryPersonName;
     }
 
     /**
      * This method returns the order.
      * @return
      */
-    public Order getOrder() {
-        return order;
+    public String getOrderID() {
+        return orderID;
     }
 
     /**
      * This method returns the customer.
      * @return
      */
-    public Customer getCustomer() {
-        return customer;
+    public String getCustomer() {
+        return customerName;
     }
 
     /**
@@ -105,7 +101,7 @@ public class Payment {
     public void displayDetails() {
         System.out.println(
             "Payment " + paymentID +
-            " for Order " + order.getOrderID() +
+            " for Order " + orderID +
             ", Amount: $" + price +
             ", Paid: " + paidStatus
         );

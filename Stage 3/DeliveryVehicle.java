@@ -11,7 +11,7 @@ public class DeliveryVehicle {
     private String year;
     private String color;
     private String condition;
-    private DeliveryPerson assignedDriver;
+    private String assignedDriver;
 
     /**
      * This constructor initializes the instance variables.
@@ -20,14 +20,16 @@ public class DeliveryVehicle {
      * @param model
      * @param year
      * @param color
+     * @param condition
      */
-    public DeliveryVehicle(String name, String make, String model, String year, String color) {
+    public DeliveryVehicle(String name, String make, String model, String year, String color, String condition, String assignedDriver) {
         this.name = name;
         this.make = make;
         this.model = model;
         this.year = year;
         this.color = color;
-        this.condition = "Good";
+        this.condition = condition;
+        this.assignedDriver = assignedDriver;
     }
 
     /**
@@ -131,7 +133,7 @@ public class DeliveryVehicle {
      * This method returns the assigned driver.
      * @return
      */
-    public DeliveryPerson getAssignedDriver() {
+    public String getAssignedDriver() {
         return assignedDriver;
     }
 
@@ -139,7 +141,7 @@ public class DeliveryVehicle {
      * This method sets the assigned driver.
      * @param assignedDriver
      */
-    public void setAssignedDriver(DeliveryPerson assignedDriver) {
+    public void setAssignedDriver(String assignedDriver) {
         this.assignedDriver = assignedDriver;
     }
 
@@ -149,13 +151,13 @@ public class DeliveryVehicle {
     public void displayDetails() {
         System.out.println(
                 "Vehicle { " +
-                "Name='" + name + '\'' +
-                ", Make='" + make + '\'' +
-                ", Model='" + model + '\'' +
-                ", Year='" + year + '\'' +
-                ", Color='" + color + '\'' +
-                ", Condition='" + condition + '\'' +
-                ", Driver=" + (assignedDriver == null ? "None" : assignedDriver.getName()) +
+                "Name: '" + name + '\'' +
+                ", Make: '" + make + '\'' +
+                ", Model: '" + model + '\'' +
+                ", Year: '" + year + '\'' +
+                ", Color: '" + color + '\'' +
+                ", Condition: '" + condition + '\'' +
+                ", Driver: " + (assignedDriver == null ? "None" : assignedDriver) +
                 " }"
         );
     }
