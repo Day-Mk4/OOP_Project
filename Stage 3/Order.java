@@ -5,18 +5,17 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 public class Order {
 
     // Instance variables
+    private String driverID;
+    private Payment payment;
+    private double price;
     private final String orderID;
     private final List<String[]> orderItems = new ArrayList<>(); 
-    private double price;
-    private final Restaurant restaurant;
-    private final Customer customer;
-    private DeliveryPerson deliveryPerson;
-    private Payment payment;
+    private final String restaurantName;
+    private final String customerName;
     private final Set<DiscountCoupon> appliedCoupons;
 
     /**
@@ -27,20 +26,18 @@ public class Order {
      * @param deliveryPerson
      * @param coupons
      */
-    public Order(String[][] items, Restaurant restaurant, Customer customer,
-                 DeliveryPerson deliveryPerson, Set<DiscountCoupon> coupons) {
-
-        this.orderID = "ORD-" + UUID.randomUUID().toString().substring(0, 6).toUpperCase();
+    public Order(String orderID, String[][] items, String restaurantName, String customerName,
+                 String driverID, Set<DiscountCoupon> coupons) {
 
         if (items != null) {
             for (String[] row : items) {
                 orderItems.add(row);
             }
         }
-
-        this.restaurant = restaurant;
-        this.customer = customer;
-        this.deliveryPerson = deliveryPerson;
+        this.orderID = orderID;
+        this.restaurantName = restaurantName;
+        this.customerName = customerName;
+        this.driverID = driverID;
         this.appliedCoupons = coupons;
         this.price = calculatePrice();
     }
@@ -87,8 +84,8 @@ public class Order {
      * This method returns the restaurant.
      * @return
      */
-    public Restaurant getRestaurant() {
-        return restaurant;
+    public String getRestaurant() {
+        return restaurantName;
     }
 
     /**
@@ -96,23 +93,23 @@ public class Order {
      * @return
      */
     public String getCustomer() {
-        return customer.getCustomerID();
+        return customerName;
     }
 
     /**
      * This method returns the customer object.
      * @return
      */
-    public Customer getCustomerObj() {
-        return customer;
+    public String getCustomerObj() {
+        return customerName;
     }
 
     /**
      * This method returns the delivery person.
      * @return
      */
-    public DeliveryPerson getDeliveryPerson() {
-        return deliveryPerson;
+    public String getDeliveryPerson() {
+        return driverID;
     }
 
     /**
@@ -120,7 +117,7 @@ public class Order {
      * @param dp
      */
     public void setDeliveryPerson(DeliveryPerson dp) {
-        this.deliveryPerson = dp;
+        this.driverID = dp.getID();
     }
 
     /**
@@ -148,8 +145,7 @@ public class Order {
 
         for (String[] row : orderItems) {
             double p = Double.parseDouble(row[1]);
-            int q = Integer.parseInt(row[2]);
-            sum += p * q;
+            sum += p;
         }
 
         double discounted = sum;
@@ -166,10 +162,10 @@ public class Order {
      * This method displays the order details.
      */
     public void displayDetails() {
-        System.out.println("Order " + orderID + " @ " + restaurant.getName() + " for " + customer.getName());
+        System.out.println("Order " + orderID + " @ " + restaurantName + " for " + customerName);
 
         for (String[] row : orderItems) {
-            System.out.println("  - " + row[0] + " x" + row[2] + " @ $" + row[1]);
+            System.out.println("  - " + row[0] + " @ $" + row[1]);
         }
 
         System.out.println("Total: $" + getPrice());

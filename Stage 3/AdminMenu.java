@@ -333,7 +333,10 @@ public class AdminMenu {
         System.out.print("Color: ");
         String cl = sc.nextLine();
 
-        vehicles.add(new DeliveryVehicle(name, mk, md, yr, cl));
+        System.out.print("Condition: ");
+        String cond = sc.nextLine();
+
+        vehicles.add(new DeliveryVehicle(name, mk, md, yr, cl, cond, null));
         System.out.println("Vehicle added.");
     }
 

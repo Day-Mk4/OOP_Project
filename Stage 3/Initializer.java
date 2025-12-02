@@ -3,6 +3,9 @@
  * Assignment: Project
  */
 import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Initializer {
 
@@ -22,103 +25,246 @@ public class Initializer {
 
     private final Scanner sc = new Scanner(System.in);
 
-    // Starts the program and loads all generic data.
+    /**
+     * This method runs the initializer to create generic data and start the login menu.
+     */
     public void Run() {
+        createGenericCoupons();
+        createGenericOrdersandPayments();
         createGenericCustomers();
         createGenericRestaurantsAndMenus();
         createGenericDriversAndVehicles();
-        createGenericCoupons();
         System.out.println("=== SwiftBytes ===");
         loginMenu();
     }
 
-
-    // Creates two sample customers
-    private void createGenericCustomers() {
-        listCustomers.add(new Customer("day", "pw", "Amadeo Pena", "day@yahoo.com", "555-2222", "NM", "CUST-001"));
-        listCustomers.add(new Customer("lazo", "pw", "Lazo McCarrol", "lazo@gmail.com", "123-1234", "NM", "CUST-002"));
+    /**
+     * This method reads discount coupon data from a file named "coupons.txt"
+     * and creates DiscountCoupon objects which are added to the listCoupons set.
+     */
+    private void createGenericCoupons() {
+        // Coupon list creation
+        String filePath = "list_coupons.txt";
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(" ");
+                String code = parts[0].trim().replace("_", " ");
+                double discountAmount = Double.parseDouble(parts[1].trim().replace("_", " "));
+                boolean validity = Boolean.parseBoolean(parts[2].trim().replace("_", " "));
+                listCoupons.add(new DiscountCoupon(code, discountAmount, validity));
+            }
+        }
+        catch (IOException e) {
+            System.out.println("Error reading coupons file: " + e.getMessage());
+        }
     }
 
-    // Creates restaurants and menus, then registers them with Admin.
+
+    /**
+     * This method reads order and payment data from files named "orders.txt" and "payments.txt"
+     * and creates Order and Payment objects which are added to the respective lists.
+     */
+    private void createGenericOrdersandPayments() {
+        // Payment list creation
+        String filePath = "list_payments.txt";
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(" ");
+                String orderID = parts[0].trim().replace("_", " ");
+                double price = Double.parseDouble(parts[1].trim().replace("_", " ")); 
+                String driverName = parts[2].trim().replace("_", " ");
+                String paymentID = parts[3].trim().replace("_", " ");
+                String customerName = parts[4].trim().replace("_", " ");
+                boolean status = Boolean.parseBoolean(parts[5].trim().replace("_", " "));
+                listPayments.add(new Payment(paymentID, price, driverName, orderID, customerName, status));
+            }
+        }
+        catch (IOException e) {
+            System.out.println("Error reading payments file: " + e.getMessage());
+        }
+
+        // Order list creation
+        filePath = "list_orders.txt";
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(" ");
+                String orderID = parts[0].trim().replace("_", " ");
+                String[] itemNames = parts[1].trim().replace("_", " ").split(",");
+                String[] itemPrices = parts[2].trim().replace("_", " ").split(",");
+                String[][] items = new String[itemNames.length][2];
+                for (int i = 0; i < itemNames.length; i++) {
+                    items[i][0] = itemNames[i];
+                    items[i][1] = itemPrices[i];
+                }
+                String restaurantName = parts[3].trim().replace("_", " ");
+                String customerName = parts[4].trim().replace("_", " ");
+                String driverID = parts[5].trim().replace("_", " ");
+                Set<DiscountCoupon> appliedCoupons = new HashSet<>();
+                for (DiscountCoupon coupon : listCoupons) {
+                    for (String cID : parts[6].trim().replace("_", " ").split(",")) {
+                        if (coupon.getCode().equals(cID)) {
+                            appliedCoupons.add(coupon);
+                        }
+                    }
+                }
+                listOrders.add(new Order(orderID, items, restaurantName, customerName, driverID, appliedCoupons));
+            }
+            for (Order order : listOrders) {
+                for (Payment payment : listPayments) {
+                    if (order.getOrderID().equals(payment.getOrderID())) {
+                        order.setPayment(payment);
+                    }
+                }
+            }
+        }
+        catch (IOException e){
+            System.out.println("Error reading orders file: " + e.getMessage());
+        }
+    }
+
+
+    /**
+     * This method reads customer data from a file named "customers.txt"
+     * and creates Customer objects which are added to the listCustomers set.
+     */
+    private void createGenericCustomers(){
+        // Customer list creation
+        String filePath = "list_customers.txt";
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(" ");
+                String username = parts[0].trim().replace("_", " "); 
+                String password = parts[1].trim().replace("_", " ");
+                String name = parts[2].trim().replace("_", " ");
+                String email = parts[3].trim().replace("_", " ");
+                String phone = parts[4].trim().replace("_", " ");
+                String address = parts[5].trim().replace("_", " ");
+                String customerID = parts[6].trim().replace("_", " ");
+                listCustomers.add(new Customer(username, password, name, email, phone, address, customerID));
+            }
+        }
+        catch (IOException e) {
+            System.out.println("Error reading customers file: " + e.getMessage());
+        }
+    }
+
+
+    /**
+     * This method reads restaurant data from a file named "restaurants.txt"
+     * and creates Restaurant objects which are added to the listRestaurants set.
+     */
     private void createGenericRestaurantsAndMenus() {
-        Restaurant r1 = new Restaurant("R-101", "China King", "301 W Main St., ABQ", "(505)489-0363", 3.6);
-        Restaurant r2 = new Restaurant("R-102", "June's Country Restaurant", "445 Outskirts Rd., ABQ", "(505)935-8876", 4.0);
-        Restaurant r3 = new Restaurant("R-103", "McDonald's", "345 E Main St., ABQ", "(505)606-7521", 2.5);
-        Restaurant r4 = new Restaurant("R-104", "Olive Garden", "113 W Ramada St., ABQ", "(505)112-3345", 3.4);
-        Restaurant r5 = new Restaurant("R-105", "Saheel's Authentic Indian Food", "678 Wedding St., ABQ", "(505)698-0034", 4.6);
+        // Menu list creation
+        String filePath = "list_menus.txt";
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            String ID = "";
+            List<String> singleItems = new ArrayList<>();
+            List<String> singlePrices = new ArrayList<>();
+            List<String> comboItems = new ArrayList<>();
+            List<String> comboPrices = new ArrayList<>();
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(" ");
+                if (parts[0].trim() == "ID") {
+                    ID = parts[1].trim().replace("_", " ");
+                }
+                else if (parts[0].trim().equals("S")) {
+                    singleItems.add(parts[1].trim().replace("_", " "));
+                    singlePrices.add(parts[2].trim().replace("_", " "));
+                }
+                else if (parts[0].trim().equals("C")){
+                    comboItems.add(parts[1].trim().replace("_", " "));
+                    comboPrices.add(parts[2].trim().replace("_", " "));
+                }
+                else if (parts[0].trim().equals("break")) {
+                    Menu menu = new Menu(ID);
+                    for (int i = 0; i < singleItems.size(); i++) {
+                        menu.addSingleItem(singleItems.get(i), Double.parseDouble(singlePrices.get(i)));
+                    }
+                    for (int i = 0; i < comboItems.size(); i++) {
+                        menu.addComboItem(comboItems.get(i), Double.parseDouble(comboPrices.get(i)));
+                    }
+                    listMenus.add(menu);
+                    ID = "";
+                    singleItems.clear();
+                    singlePrices.clear();
+                    comboItems.clear();
+                    comboPrices.clear();
+                }
+            }
+        }
+        catch (IOException e) {
+            System.out.println("Error reading menus file: " + e.getMessage());
+        }
 
-        Menu m1 = new Menu(r1.getID());
-        m1.addSingleItem("Soda", 3.00);
-        m1.addSingleItem("Fried Rice", 3.00);
-        m1.addSingleItem("3 Eggrolls", 3.00);
-        m1.addSingleItem("6 Dumplings", 3.50);
-        m1.addSingleItem("Chow Mein", 8.00);
-        m1.addSingleItem("Sweet and Sour Pork", 10.00);
-        m1.addSingleItem("Kung Pao Chicken", 15.00);
-        r1.setMenu(m1);
-
-        Menu m2 = new Menu(r2.getID());
-        m2.addSingleItem("Soda", 3.00);
-        m2.addSingleItem("Sweet Potato Fries", 3.00);
-        m2.addSingleItem("Coleslaw", 3.00);
-        m2.addSingleItem("Jalapeno Poppers", 3.50);
-        m2.addSingleItem("Pulled Pork Sandwich", 8.00);
-        m2.addSingleItem("Mushroom Burger", 10.00);
-        m2.addSingleItem("Chicken Fried Steak", 15.00);
-        r2.setMenu(m2);
-
-        Menu m3 = new Menu(r3.getID());
-        m3.addSingleItem("Fries + Drink", 5.99);
-        m3.addSingleItem("Burger", 9.99);
-        m3.addComboItem("Combo", 13.99);
-        r3.setMenu(m3);
-
-        Menu m4 = new Menu(r4.getID());
-        m4.addSingleItem("Drink + side", 7.00);
-        m4.addSingleItem("Spaghetti", 8.00);
-        m4.addComboItem("Steak", 15.00);
-        r4.setMenu(m4);
-
-        listRestaurants.addAll(Arrays.asList(r1, r2, r3, r4, r5));
-        listMenus.addAll(Arrays.asList(m1, m2, m3, m4));
-
-        admin.addRestaurant(r1);
-        admin.addRestaurant(r2);
-        admin.addRestaurant(r3);
-        admin.addRestaurant(r4);
-        admin.addRestaurant(r5);
+        // Restaurant list creation
+        filePath = "list_restaurants.txt";
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null){
+                String[] parts = line.split(" ");
+                String name = parts[0].trim().replace("_", " "); 
+                String ID = parts[1].trim().replace("_", " ");
+                String address = parts[2].trim().replace("_", " ");
+                double rating = Double.parseDouble(parts[3].trim().replace("_", " "));
+                String phone = parts[4].trim().replace("_", " ");
+                listRestaurants.add(new Restaurant(ID, name, address, phone, rating));
+            }
+        }
+        catch (IOException e) {
+            System.out.println("Error reading customers file: " + e.getMessage());
+        }
     }
+
 
     // Creates sample delivery drivers and vehicles
     private void createGenericDriversAndVehicles() {
-        DeliveryPerson d1 = new DeliveryPerson("driver1", "pw", "John", "d1@swift.com", "222-2222", "NM");
-        DeliveryPerson d2 = new DeliveryPerson("driver2", "pw", "Doe", "d2@swift.com", "333-3333", "NM");
+        // Employee list creation
+        String filepath = "list_employees.txt";
+        try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(" ");
+                String username = parts[0].trim().replace("_", " "); 
+                String password = parts[1].trim().replace("_", " ");
+                String name = parts[2].trim().replace("_", " ");
+                String email = parts[3].trim().replace("_", " ");
+                String phone = parts[4].trim().replace("_", " ");
+                String address = parts[5].trim().replace("_", " ");
+                DeliveryPerson driver = new DeliveryPerson(username, password, name, email, phone, address);
+                listDrivers.add(driver);
+            }
+        }
+        catch (IOException e) {
+            System.out.println("Error reading drivers file: " + e.getMessage());
+        }
 
-        listDrivers.addAll(Arrays.asList(d1, d2));
-
-        DeliveryVehicle v1 = new DeliveryVehicle("Scooter", "Honda", "Ruckus", "2022", "Red");
-        DeliveryVehicle v2 = new DeliveryVehicle("Car", "Toyota", "Corolla", "2019", "Blue");
-
-        v1.setAssignedDriver(d1);
-        v2.setAssignedDriver(d2);
-
-        listVehicles.addAll(Arrays.asList(v1, v2));
-
-        admin.addDeliveryPerson(d1);
-        admin.addDeliveryPerson(d2);
-        admin.addDeliveryVehicle(v1);
-        admin.addDeliveryVehicle(v2);
+        // Vehicle list creation
+        filepath = "list_vehicles.txt";
+        try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(" ");
+                String vehicleName = parts[0].trim().replace("_", " "); 
+                String make = parts[1].trim().replace("_", " ");
+                String model = parts[2].trim().replace("_", " ");
+                String year = parts[3].trim().replace("_", " ");
+                String color = parts[4].trim().replace("_", " ");
+                String condition = parts[5].trim().replace("_", " ");
+                String driverUsername = parts[6].trim().replace("_", " "); // Store for vehicle assignment
+                DeliveryVehicle vehicle = new DeliveryVehicle(vehicleName, make, model, year, color, condition, driverUsername);
+                listVehicles.add(vehicle);
+            }
+        }
+        catch (IOException e) {
+            System.out.println("Error reading vehicles file: " + e.getMessage());
+        }
     }
 
-    // Creates several discount coupons.
-    private void createGenericCoupons() {
-        listCoupons.add(new DiscountCoupon("WELCOME10", 0.10, true));
-        listCoupons.add(new DiscountCoupon("SAVE5", 5.00, true));
-        listCoupons.add(new DiscountCoupon("23XC2444", 3.00, false));
-        listCoupons.add(new DiscountCoupon("5X6734RT", 3.00, true));
-        listCoupons.add(new DiscountCoupon("7YTU8922", 5.00, true));
-        listCoupons.add(new DiscountCoupon("4FLKKM23", 10.00, true));
-    }
 
     // Handles login attempts for admin, customer, and delivery driver.
     public void loginMenu() {
