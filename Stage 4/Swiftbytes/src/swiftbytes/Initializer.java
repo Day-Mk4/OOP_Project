@@ -202,68 +202,98 @@ public class Initializer {
      * This method reads restaurant data from a file named "restaurants.txt"
      * and creates Restaurant objects which are added to the listRestaurants set.
      */
-    private void createGenericRestaurantsAndMenus() {
-        // Menu list creation
-        String filePath = "list_menus.txt";
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            String ID = "";
-            List<String> singleItems = new ArrayList<>();
-            List<String> singlePrices = new ArrayList<>();
-            List<String> comboItems = new ArrayList<>();
-            List<String> comboPrices = new ArrayList<>();
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(" ");
-                if (parts[0].trim() == "ID") {
-                    ID = parts[1].trim().replace("_", " ");
-                }
-                else if (parts[0].trim().equals("S")) {
-                    singleItems.add(parts[1].trim().replace("_", " "));
-                    singlePrices.add(parts[2].trim().replace("_", " "));
-                }
-                else if (parts[0].trim().equals("C")){
-                    comboItems.add(parts[1].trim().replace("_", " "));
-                    comboPrices.add(parts[2].trim().replace("_", " "));
-                }
-                else if (parts[0].trim().equals("break")) {
-                    Menu menu = new Menu(ID);
-                    for (int i = 0; i < singleItems.size(); i++) {
-                        menu.addSingleItem(singleItems.get(i), Double.parseDouble(singlePrices.get(i)));
-                    }
-                    for (int i = 0; i < comboItems.size(); i++) {
-                        menu.addComboItem(comboItems.get(i), Double.parseDouble(comboPrices.get(i)));
-                    }
-                    listMenus.add(menu);
-                    ID = "";
-                    singleItems.clear();
-                    singlePrices.clear();
-                    comboItems.clear();
-                    comboPrices.clear();
-                }
+private void createGenericRestaurantsAndMenus() {
+
+    String filePath = "list_menus.txt";
+
+    try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+
+        String line;
+        String currentID = "";
+        List<String> singleItems = new ArrayList<>();
+        List<String> singlePrices = new ArrayList<>();
+        List<String> comboItems = new ArrayList<>();
+        List<String> comboPrices = new ArrayList<>();
+
+        while ((line = br.readLine()) != null) {
+
+            String[] parts = line.split(" ");
+
+            if (parts[0].trim().equals("ID")) {
+                currentID = parts[1].trim();
             }
-        }
-        catch (IOException e) {
-            System.out.println("Error reading menus file: " + e.getMessage());
+            else if (parts[0].trim().equals("S")) {
+                singleItems.add(parts[1].trim().replace("_", " "));
+                singlePrices.add(parts[2].trim());
+            }
+            else if (parts[0].trim().equals("C")) {
+                comboItems.add(parts[1].trim().replace("_", " "));
+                comboPrices.add(parts[2].trim());
+            }
+            else if (parts[0].trim().equals("break")) {
+
+                Menu menu = new Menu(currentID);
+
+                for (int i = 0; i < singleItems.size(); i++) {
+                    menu.addSingleItem(
+                        singleItems.get(i),
+                        Double.parseDouble(singlePrices.get(i))
+                    );
+                }
+
+                for (int i = 0; i < comboItems.size(); i++) {
+                    menu.addComboItem(
+                        comboItems.get(i),
+                        Double.parseDouble(comboPrices.get(i))
+                    );
+                }
+
+                listMenus.add(menu);
+
+                currentID = "";
+                singleItems.clear();
+                singlePrices.clear();
+                comboItems.clear();
+                comboPrices.clear();
+            }
         }
 
-        // Restaurant list creation
-        filePath = "list_restaurants.txt";
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = br.readLine()) != null){
-                String[] parts = line.split(" ");
-                String name = parts[0].trim().replace("_", " "); 
-                String ID = parts[1].trim().replace("_", " ");
-                String address = parts[2].trim().replace("_", " ");
-                double rating = Double.parseDouble(parts[3].trim().replace("_", " "));
-                String phone = parts[4].trim().replace("_", " ");
-                listRestaurants.add(new Restaurant(ID, name, address, phone, rating));
+    } catch (IOException e) {
+        System.out.println("Error reading menus file: " + e.getMessage());
+    }
+
+
+    // Restaurant list creation
+    filePath = "list_restaurants.txt";
+    try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+
+        String line;
+
+        while ((line = br.readLine()) != null) {
+            String[] parts = line.split(" ");
+
+            String name = parts[0].trim().replace("_", " ");
+            String ID = parts[1].trim();
+            String address = parts[2].trim().replace("_", " ");
+            double rating = Double.parseDouble(parts[3]);
+            String phone = parts[4].trim();
+
+            listRestaurants.add(new Restaurant(ID, name, address, phone, rating));
+        }
+
+    } catch (IOException e) {
+        System.out.println("Error reading restaurants file: " + e.getMessage());
+    }
+
+    //Link Menus to Restaurants
+    for (Restaurant r : listRestaurants) {
+        for (Menu m : listMenus) {
+            if (m.getRestaurantID().equals(r.getID())) {
+                r.setMenu(m);
             }
         }
-        catch (IOException e) {
-            System.out.println("Error reading customers file: " + e.getMessage());
-        }
     }
+}
 
 
     // Creates sample delivery drivers and vehicles
