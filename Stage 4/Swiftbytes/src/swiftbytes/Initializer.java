@@ -45,6 +45,7 @@ public class Initializer {
         createGenericCustomers();
         createGenericRestaurantsAndMenus();
         createGenericDriversAndVehicles();
+        createGenericOrdersandPayments();
         createGenericCoupons();
     }
 
@@ -220,6 +221,7 @@ private void createGenericRestaurantsAndMenus() {
         while ((line = br.readLine()) != null) {
 
             String[] parts = line.split(" ");
+            System.out.println(Arrays.toString(parts));
 
             if (parts[0].trim().equals("ID")) {
                 currentID = parts[1].trim();
