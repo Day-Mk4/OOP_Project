@@ -138,10 +138,6 @@ public class Order {
         this.payment = payment;
     }
     
-    /**
-     * This method returns the applied coupons.
-     * @return 
-     */
     public Set<DiscountCoupon> getAppliedCoupons()
     {
         return appliedCoupons;
