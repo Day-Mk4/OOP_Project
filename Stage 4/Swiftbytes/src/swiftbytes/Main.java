@@ -6,7 +6,8 @@ package swiftbytes;
 
 public class Main {
     public static void main(String[] args) {
-        Initializer app = new Initializer();
+        Initializer init = new Initializer();
+        LoginGUI app = new LoginGUI(init);
         app.Run();
     }
 }

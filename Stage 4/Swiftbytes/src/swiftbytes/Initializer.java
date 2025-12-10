@@ -45,6 +45,7 @@ public class Initializer {
         createGenericCustomers();
         createGenericRestaurantsAndMenus();
         createGenericDriversAndVehicles();
+        createGenericOrdersandPayments();
         createGenericCoupons();
     }
 
