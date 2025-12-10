@@ -137,6 +137,11 @@ public class Order {
     public void setPayment(Payment payment) {
         this.payment = payment;
     }
+    
+    public Set<DiscountCoupon> getAppliedCoupons()
+    {
+        return appliedCoupons;
+    }
 
     /**
      * This method calculates the price and applies discounts if any.
