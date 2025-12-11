@@ -59,7 +59,7 @@ public class DataWriter {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
             for (DiscountCoupon coupon : coupons) {
                 // Process each coupon
-                String datatowrite = coupon.getCode() + " " + coupon.getDiscountAmount() + " " + Boolean.toString(coupon.isValid());
+                String datatowrite = coupon.getCode().replace(' ', '_') + " " + coupon.getDiscountAmount() + " " + Boolean.toString(coupon.isValid());
                 bw.write(datatowrite);
                 bw.newLine();
             }
@@ -75,7 +75,7 @@ public class DataWriter {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
             for (Customer customer : customers) {
                 // Process each customer
-                String datatowrite = customer.getUsername() + " " + customer.getPassword() + " " + customer.getName() + " " + customer.getEmail() + " " + customer.getPhone() + " " + customer.getAddress() + " " + customer.getCustomerID();
+                String datatowrite = customer.getUsername().replace(' ', '_') + " " + customer.getPassword().replace(' ', '_') + " " + customer.getName().replace(' ', '_') + " " + customer.getEmail().replace(' ', '_') + " " + customer.getPhone().replace(' ', '_') + " " + customer.getAddress().replace(' ', '_') + " " + customer.getCustomerID().replace(' ', '_');
                 bw.write(datatowrite);
                 bw.newLine();
             }
@@ -87,11 +87,11 @@ public class DataWriter {
     public void writeDrivers()
     {
         // Implementation for writing drivers to file
-        String filePath = "list_drivers.txt";
+        String filePath = "list_employees.txt";
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
             for (DeliveryPerson driver : drivers) {
                 // Process each driver
-                String datatowrite = driver.getUsername() + " " + driver.getPassword() + " " + driver.getName() + " " + driver.getEmail() + " " + driver.getPhone() + " " + driver.getAddress();
+                String datatowrite = driver.getUsername().replace(' ', '_') + " " + driver.getPassword().replace(' ', '_') + " " + driver.getName().replace(' ', '_') + " " + driver.getEmail().replace(' ', '_') + " " + driver.getPhone().replace(' ', '_') + " " + driver.getAddress().replace(' ', '_');
                 bw.write(datatowrite);
                 bw.newLine();
             }
@@ -107,15 +107,15 @@ public class DataWriter {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
             for (Menu menu : menus) {
                 // Process each menu
-                bw.write("ID : " + menu.getRestaurantID());
+                bw.write("ID " + menu.getRestaurantID());
                 bw.newLine();
                 for (Map.Entry<String, Double> entry : menu.getSingles().entrySet()) {
-                    String datatowrite = "S " + entry.getKey() + " " + entry.getValue();
+                    String datatowrite = "S " + entry.getKey().replace(' ', '_') + " " + entry.getValue();
                     bw.write(datatowrite);
                     bw.newLine();
                 }
                 for (Map.Entry<String, Double> entry : menu.getCombos().entrySet()) {
-                    String datatowrite = "C " + entry.getKey() + " " + entry.getValue();
+                    String datatowrite = "C " + entry.getKey().replace(' ', '_') + " " + entry.getValue();
                     bw.write(datatowrite);
                     bw.newLine();
                 }
@@ -145,7 +145,7 @@ public class DataWriter {
                     // Process each applied coupon
                     appliedCoupons += coupon.getCode() + ",";
                 }
-                String datatowrite = order.getOrderID() + " " + orderItems + " " + orderPrices + " " + order.getRestaurant() + " " + order.getCustomer() + " " + order.getDeliveryPerson() + " " + appliedCoupons;
+                String datatowrite = order.getOrderID().replace(' ', '_') + " " + orderItems.replace(' ', '_') + " " + orderPrices.replace(' ', '_') + " " + order.getRestaurant().replace(' ', '_') + " " + order.getCustomer().replace(' ', '_') + " " + order.getDeliveryPerson().replace(' ', '_') + " " + appliedCoupons.replace(' ', '_');
                 bw.write(datatowrite);
                 bw.newLine();
             }
@@ -161,7 +161,7 @@ public class DataWriter {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
             for (Payment payment : payments) {
                 // Process each payment
-                String datatowrite = payment.getPaymentID() + " " + payment.getPrice() + " " + payment.getDeliveryPerson() + " " + payment.getOrderID() + " " + payment.getCustomer() + " " + Boolean.toString(payment.getPaidStatus());
+                String datatowrite = payment.getPaymentID().replace(' ', '_') + " " + payment.getPrice() + " " + payment.getDeliveryPerson().replace(' ', '_') + " " + payment.getOrderID().replace(' ', '_') + " " + payment.getCustomer().replace(' ', '_') + " " + Boolean.toString(payment.getPaidStatus());
                 bw.write(datatowrite);
                 bw.newLine();
             }
@@ -177,7 +177,7 @@ public class DataWriter {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
             for (Restaurant restaurant : restaurants) {
                 // Process each restaurant
-                String datatowrite = restaurant.getName() + " " + restaurant.getID() + " " + restaurant.getAddress() + " " + restaurant.getRating() + " " + restaurant.getPhone() + " ";
+                String datatowrite = restaurant.getName().replace(' ', '_') + " " + restaurant.getID().replace(' ', '_') + " " + restaurant.getAddress().replace(' ', '_') + " " + restaurant.getRating() + " " + restaurant.getPhone().replace(' ', '_');
                 bw.write(datatowrite);
                 bw.newLine();
             }
@@ -193,7 +193,7 @@ public class DataWriter {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
             for (DeliveryVehicle vehicle : vehicles) {
                 // Process each vehicle
-                String datatowrite = vehicle.getName() + " " + vehicle.getMake() + " " + vehicle.getModel() + " " + vehicle.getYear() + " " + vehicle.getColor() + " " + vehicle.getCondition() + " " + vehicle.getAssignedDriver();
+                String datatowrite = vehicle.getName().replace(' ', '_') + " " + vehicle.getMake().replace(' ', '_') + " " + vehicle.getModel().replace(' ', '_') + " " + vehicle.getYear().replace(' ', '_') + " " + vehicle.getColor().replace(' ', '_') + " " + vehicle.getCondition().replace(' ', '_') + " " + vehicle.getAssignedDriver().replace(' ', '_');
                 bw.write(datatowrite);
                 bw.newLine();
             }

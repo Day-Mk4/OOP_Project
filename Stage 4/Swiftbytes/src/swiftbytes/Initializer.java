@@ -35,7 +35,6 @@ public class Initializer {
     // Old console entry point still works
     public void Run() {
         initData();
-        writeData();
     }
 
     // Seed data only once
@@ -393,7 +392,7 @@ private void createGenericRestaurantsAndMenus() {
         System.out.println("Goodbye!");
     }
     
-    private void writeData() {
+    public void writeData() {
         new DataWriter(listCoupons, listCustomers, listDrivers, listMenus, listOrders, listPayments, listRestaurants, listVehicles).writeData();
     }
 }

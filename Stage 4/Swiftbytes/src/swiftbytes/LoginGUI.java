@@ -20,6 +20,7 @@ public class LoginGUI extends javax.swing.JFrame {
    public LoginGUI(Initializer initializer) {
         this.initializer = initializer;
         initComponents();
+        this.initializer.writeData();
     }
    
     private String getUser() {
@@ -263,29 +264,6 @@ public class LoginGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         handleDriverLogin();
     }//GEN-LAST:event_btnDriverActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public void Run() {
-
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (Exception ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-        java.awt.EventQueue.invokeLater(() -> {
-            Initializer init = new Initializer();
-            init.initForGUI();
-            new LoginGUI(init).setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdmin;
