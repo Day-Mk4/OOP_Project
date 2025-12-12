@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-Speedy Mercedes-Benz eSprinter 2024 Silver Slightly_Dented driver2
-Wrecker Ford Transit 2023 White Fair driver1
-<<<<<<< HEAD
-=======
-Speedy Mercedes-Benz eSprinter 2024 Silver Slightly_Dented driver2
->>>>>>> 17b88cdb1291291d89064bb1f652457c6487b81d
-=======
-Wrecker Ford Transit 2023 White Fair driver1
-Speedy Mercedes-Benz eSprinter 2024 Silver Slightly_Dented driver2
->>>>>>> 17b88cdb1291291d89064bb1f652457c6487b81d
 Dune_Buggy Ram ProMaster_EV 2025 Red Fair null
+Speedy Mercedes-Benz eSprinter 2024 Silver Slightly_Dented driver2
+Wrecker Ford Transit 2023 White Fair driver1
