@@ -1,0 +1,7 @@
+Day Pena – Stage 4
+
+Classes: User, Login, DeliveryPerson, Customer, DiscountCoupon, Restaurant, CustomerMenu
+
+I was still responsible for my classes that handle User, Login, DeliveryPerson, Customer, DiscountCoupon, Restaurant, DriverMenu, and CustomerMenu functions. We were both responsible for the Initializer, AdminMenu, and DriverMenu class.
+
+For the GUI classes I was responsible for the AdminGUI, LoginGUI, and CustomerGUI.
