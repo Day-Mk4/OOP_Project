@@ -1,4 +1,14 @@
+23XC2444 3.0 false
+<<<<<<< HEAD
+<<<<<<< HEAD
 7YTU8922 5.0 true
 5X6734RT 3.0 true
-23XC2444 3.0 false
+=======
+5X6734RT 3.0 true
+7YTU8922 5.0 true
+>>>>>>> 17b88cdb1291291d89064bb1f652457c6487b81d
+=======
+5X6734RT 3.0 true
+7YTU8922 5.0 true
+>>>>>>> 17b88cdb1291291d89064bb1f652457c6487b81d
 4FLKKM23 10.0 true
