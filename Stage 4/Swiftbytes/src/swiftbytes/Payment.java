@@ -27,7 +27,7 @@ public class Payment {
         this.paymentID = paymentID;
         this.price = price;
         this.deliveryPersonName = deliveryPerson;
-        this.orderID = "ORD-"+orderID;
+        this.orderID = orderID;
         this.customerName = customer;
         this.paidStatus = status;
     }

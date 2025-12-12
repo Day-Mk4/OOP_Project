@@ -5,8 +5,8 @@
 package swiftbytes;
 
 /**
- *
- * @author Lithi
+ * @author Lazo McCarroll
+ * Assignment: project
  */
 
 import java.util.*;

@@ -1,1 +1,2 @@
 001 Pulled_Pork_Sandwich,Mushroom_Burger, 8.00,10.00, June's_Country_Restaurant Lazo_McCarroll driver1 
+002 Fried_Rice, 3.0, China_King G.W DRV-3708A0 
